@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TerminalLibrary;
 
 namespace Terminal
 {
@@ -21,7 +22,7 @@ namespace Terminal
 
         IServerProxy serverProxy;
         TechnicalBreakForm technicalBreakForm;
-        Terminal terminal;
+        ITerminal terminal;
 
         private void Depositing_Click(object sender, EventArgs e)
         {
@@ -101,7 +102,14 @@ namespace Terminal
                 serverProxy.CancelTechnicalBreak += ServerProxy_CancelTechnicalBreak;
 				serverProxy.NeedCashInfo += ServerProxy_NeedCashInfo;
 
-                terminal = Terminal.ConnectToDevice();
+                if (SettingsTerminal.Instance.EmulateMode)
+                {
+                    terminal = Terminal.RunEmulator();
+                }
+                else
+				{
+                    terminal = Terminal.ConnectToDevice(SettingsTerminal.Instance.ComPort);
+				}
             }
             catch
             {

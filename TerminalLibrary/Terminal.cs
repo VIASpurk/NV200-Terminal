@@ -14,7 +14,7 @@ namespace TerminalLibrary
 	/// <summary>
 	/// Класс работы с терминалом
 	/// </summary>
-	public class Terminal : IDisposable
+	public class Terminal : IDisposable, ITerminal
 	{
 		private string comport;
 		private CPayout payoutModule;
@@ -33,14 +33,22 @@ namespace TerminalLibrary
 
 		private Terminal() { }
 
+		/// <summary>
+		/// Получена сумма от пользователя
+		/// </summary>
 		public event Action<int> ReceivedCash; 
 		public event Action<string> PoolLog;
+		/// <summary>
+		/// Выдана сумма пользователю
+		/// </summary>
 		public event Action<int> PayoutCash;
 
 		public static Terminal ConnectToDevice(string comport)
 		{
-			var terminal = new Terminal();
-			terminal.comport = comport;
+			var terminal = new Terminal
+			{
+				comport = comport
+			};
 			terminal.Connect();
 			return terminal;
 		}
@@ -114,8 +122,7 @@ namespace TerminalLibrary
 			StringBuilder sb = new StringBuilder();
 			foreach(var channel in payoutModule.UnitDataList)
 			{
-				string error;
-				if (payoutModule.ChangeNoteRoute(channel.Value, channel.Currency, toCashbox, out error) == false)
+				if (payoutModule.ChangeNoteRoute(channel.Value, channel.Currency, toCashbox, out string error) == false)
 				{
 					sb.Append(error + Environment.NewLine);
 				}
@@ -177,9 +184,8 @@ namespace TerminalLibrary
 					throw new ApplicationException($"{errorText} Unsupported type shown by SMART Payout, this SDK supports the SMART Payout only");
 				}
 
-				string tmpLog;
 				// inhibits, this sets which channels can receive notes
-				payoutModule.SetInhibits(out tmpLog);
+				payoutModule.SetInhibits(out string tmpLog);
 
 				payoutModule.EnablePayout(out tmpLog);
 
@@ -212,7 +218,7 @@ namespace TerminalLibrary
 			// not dealing with protocol under level 6
 			// attempt to set in validator
 			byte b = 0x06;
-			string log = null;
+			string log;
 			while (true)
 			{
 				payoutModule.SetProtocolVersion(b, out log);

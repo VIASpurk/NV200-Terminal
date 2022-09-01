@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TerminalLibrary;
 
 namespace Terminal
 {
 	/// <summary>
 	/// Класс работы с терминалом
 	/// </summary>
-	public class Terminal
+	public class Terminal : TerminalLibrary.ITerminal
 	{
 		private static int idNext = 0;
 		private int id;
@@ -18,12 +19,20 @@ namespace Terminal
 		private Terminal() { }
 
 		public event Action<int> ReceivedCash;
+		public event Action<int> PayoutCash;
 
-		public static Terminal ConnectToDevice()
+		public static ITerminal RunEmulator()
 		{
-			var terminal = new Terminal();
-			terminal.id = idNext++;
+			var terminal = new Terminal
+			{
+				id = idNext++
+			};
 			return terminal;
+		}
+
+		public static ITerminal ConnectToDevice(string comport)
+		{
+			return TerminalLibrary.Terminal.ConnectToDevice(comport);
 		}
 
 
@@ -35,6 +44,11 @@ namespace Terminal
 		public bool Payout(int quantity, out string log)
 		{
 			log = canPayout ? null : "Не достаточно средств для выплаты";
+
+			if (canPayout)
+			{
+				Task.Run( async () => { await Task.Delay(1000); PayoutCash?.Invoke(quantity); });
+			}
 			return canPayout;
 		}
 
@@ -60,19 +74,18 @@ namespace Terminal
 		/// <summary>
 		/// Включить приемник купюр
 		/// </summary>
-		public bool EnablePayout(out string log)
+		public void EnableValidator(out string log)
 		{
 			log = null;
-			return true;
+			Task.Run( async () => { await Task.Delay(1000); ReceivedCash?.Invoke(500); });
 		}
 
 		/// <summary>
 		/// Выключить приемник купюр
 		/// </summary>
-		public bool DisablePayout(out string log)
+		public void DisableValidator(out string log)
 		{
 			log = null;
-			return true;
 		}
 
 		public ChannelInfo[] GetInfo()

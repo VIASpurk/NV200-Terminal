@@ -12,7 +12,7 @@ namespace Terminal
         public int CountPC { get; private set; } = 25;
         public string ComPort { get; private set; } = "COM1";
         public string NameServer { get; private set; } = "localhost";
-        public string IPHost { get; private set; } = "192.168.0.10";
+        public bool EmulateMode { get; private set; } = true;
         public bool Debug { get; private set; } = false;
 
         private static SettingsTerminal instance;
@@ -86,10 +86,10 @@ namespace Terminal
                                 needSaveConfig = true;
                             }
                             break;
-                        case "IPHost":
-                            if (!string.IsNullOrWhiteSpace(subs[1]))
+                        case nameof(EmulateMode):
+                            if (!string.IsNullOrWhiteSpace(subs[1]) && bool.TryParse(subs[1], out bool value))
                             {
-                                IPHost = subs[1];
+                                EmulateMode = value;
                             }
                             else
                             {
@@ -99,13 +99,10 @@ namespace Terminal
                         case "Debug":
                             if (!string.IsNullOrWhiteSpace(subs[1]))
                             {
-
-                                if (bool.TryParse(subs[1], out bool value))
+                                if (bool.TryParse(subs[1], out value))
                                 {
                                     Debug = value;
                                 }
-
-
                             }
                             else
                             {
@@ -131,8 +128,8 @@ namespace Terminal
                     writer.WriteLine($"{nameof(CountPC)}={CountPC}");
                     writer.WriteLine($"{nameof(ComPort)}={ComPort}");
                     writer.WriteLine($"{nameof(NameServer)}={NameServer}");
-                    writer.WriteLine($"{nameof(IPHost)}={IPHost}");
                     writer.WriteLine($"{nameof(Debug)}={Debug}");
+                    writer.WriteLine($"{nameof(EmulateMode)}={EmulateMode}");
                 }
             }
             catch
