@@ -33,10 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NetworkLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\NetworkLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="srp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=91d1de3df99ea180, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\srp.dll</HintPath>
@@ -163,6 +159,12 @@
     <Content Include="Resources\Zyan.Communication.xml" />
     <Content Include="Resources\Zyan.SafeDeserializationHelpers.dll" />
     <Content Include="Resources\Zyan.SafeDeserializationHelpers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NetworkLibrary\NetworkLibrary.csproj">
+      <Project>{77aebe80-75bc-4e59-8941-bc1f335cf486}</Project>
+      <Name>NetworkLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

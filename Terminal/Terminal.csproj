@@ -33,32 +33,33 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ComponentFactory.Krypton.Docking, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e" />
-    <Reference Include="ComponentFactory.Krypton.Navigator, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e" />
-    <Reference Include="ComponentFactory.Krypton.Ribbon, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e" />
-    <Reference Include="ComponentFactory.Krypton.Toolkit">
-      <HintPath>..\Krypton-master\Krypton-master\Bin\ComponentFactory.Krypton.Toolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="ComponentFactory.Krypton.Workspace, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e" />
-    <Reference Include="CustomControlUsingPalettes">
-      <HintPath>..\Krypton-master\Krypton-master\Bin\CustomControlUsingPalettes.exe</HintPath>
-    </Reference>
-    <Reference Include="DockingCustomized">
-      <HintPath>..\Krypton-master\Krypton-master\Bin\DockingCustomized.exe</HintPath>
-    </Reference>
-    <Reference Include="NavigatorAndFloatingWindows">
-      <HintPath>..\Krypton-master\Krypton-master\Bin\NavigatorAndFloatingWindows.exe</HintPath>
-    </Reference>
-    <Reference Include="NetworkLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ComponentFactory.Krypton.Design, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Operator\Resources\NetworkLibrary.dll</HintPath>
+      <HintPath>..\Krypton-master\Bin\ComponentFactory.Krypton.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Docking, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Krypton-master\Bin\ComponentFactory.Krypton.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Navigator, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Krypton-master\Bin\ComponentFactory.Krypton.Navigator.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Ribbon, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Krypton-master\Bin\ComponentFactory.Krypton.Ribbon.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Krypton-master\Bin\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Workspace, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Krypton-master\Bin\ComponentFactory.Krypton.Workspace.dll</HintPath>
     </Reference>
     <Reference Include="srp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=91d1de3df99ea180, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Operator\Resources\srp.dll</HintPath>
-    </Reference>
-    <Reference Include="StandardDocking">
-      <HintPath>..\Krypton-master\Krypton-master\Bin\StandardDocking.exe</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -192,6 +193,16 @@
     <Content Include="Resources\Zyan.Communication.xml" />
     <Content Include="Resources\Zyan.SafeDeserializationHelpers.dll" />
     <Content Include="Resources\Zyan.SafeDeserializationHelpers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NetworkLibrary\NetworkLibrary.csproj">
+      <Project>{77aebe80-75bc-4e59-8941-bc1f335cf486}</Project>
+      <Name>NetworkLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TerminalLibrary\TerminalLibrary.csproj">
+      <Project>{4b47e296-8285-4729-bf61-9bdb1f987ff1}</Project>
+      <Name>TerminalLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

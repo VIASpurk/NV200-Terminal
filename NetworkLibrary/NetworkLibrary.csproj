@@ -68,5 +68,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\NetworkLibrary.dll" />
+    <Content Include="Resources\srp.dll" />
+    <Content Include="Resources\Zyan.Communication.dll" />
+    <Content Include="Resources\Zyan.SafeDeserializationHelpers.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
