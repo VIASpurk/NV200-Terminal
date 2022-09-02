@@ -55,7 +55,7 @@ namespace Terminal
             int? PC = СhoosePCForm.GetPCName(nameWindow, this);
             if (PC != null)
             {
-                WaitingPaymentForm.SetCashAndPC(PC.Value, serverProxy, this);
+                WaitingPaymentForm.SetCashAndPC(PC.Value, serverProxy, this, terminal);
             }
         }
 

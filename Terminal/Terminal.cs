@@ -60,13 +60,20 @@ namespace Terminal
 		public bool CanPayout(int quantity, out string log)
 		{
 			log = null;
-			if (MessageBox.Show($"Хвататет средтств для выплаты {quantity}", id.ToString(), MessageBoxButtons.YesNo) == DialogResult.Yes)
+			var openedForm = Application.OpenForms.OfType<Form>().FirstOrDefault(x => x.TopLevel);
+			if (openedForm != null)
 			{
-				canPayout = true;
-			}
-			else
-			{
-				canPayout = false;
+				openedForm.Invoke(new Action(() =>
+				{
+					if (MessageBox.Show($"Хвататет средтств для выплаты {quantity}", id.ToString(), MessageBoxButtons.YesNo) == DialogResult.Yes)
+					{
+						canPayout = true;
+					}
+					else
+					{
+						canPayout = false;
+					};
+				}));
 			}
 			return true;
 		}
