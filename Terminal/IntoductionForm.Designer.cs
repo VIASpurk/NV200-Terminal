@@ -198,6 +198,7 @@
 			this.Controls.Add(this.IntoductionDebug);
 			this.Controls.Add(this.IntoductionText);
 			this.Name = "Intoduction";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Intoduction_FormClosing);
 			this.Load += new System.EventHandler(this.Intoduction_Load);
 			this.Shown += new System.EventHandler(this.Intoduction_Shown);
 			this.ResumeLayout(false);

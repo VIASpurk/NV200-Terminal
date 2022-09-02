@@ -9,29 +9,31 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TerminalLibrary;
 
 namespace Terminal
 {
     public partial class Intoduction : Form
     {
-        private int? Cash { get; set; }
+        private int Cash;
+        private ITerminal terminal;
 
         public Intoduction()
         {
             InitializeComponent();
         }
 
-        public static int? GetCashTerminal(int? namePC, IWin32Window owner)
+        public static int? GetCashTerminal(int? namePC, IWin32Window owner, ITerminal terminal)
         {
             using (Intoduction intoduction = new Intoduction())
             {
                 intoduction.labelIntroductonPC.Text = "Компьютер № " + namePC;
+                intoduction.terminal = terminal;
                 DialogResult intr = intoduction.ShowDialog(owner);
 
                 if (intr == DialogResult.OK)
                 {
                     return intoduction.Cash;
-
                 }
 
                 return null;
@@ -76,12 +78,33 @@ namespace Terminal
         private void Intoduction_Shown(object sender, EventArgs e)
         {
             timerIntroduction.Enabled = true;
+			terminal.ReceivedCash += Terminal_ReceivedCash;
+            terminal.EnableValidator(out string error);
+        }
+
+		private void Terminal_ReceivedCash(int obj)
+		{
+            timerIntroduction.Enabled = false;
+
+            Cash += obj;
+            Invoke(new Action(() =>
+            {
+                labelCash.Text = Cash.ToString();
+                kryptonButtonIntoductionCancel.Visible = false;
+                kryptonButtonIntoductionNext.Visible = true;
+            }));
         }
 
         private void timerIntroduction_Tick(object sender, EventArgs e)
         {
             Close();
         }
-    }
+
+		private void Intoduction_FormClosing(object sender, FormClosingEventArgs e)
+		{
+            terminal.DisableValidator(out string error);
+            terminal.ReceivedCash -= Terminal_ReceivedCash;
+		}
+	}
 }
 

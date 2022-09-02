@@ -56,7 +56,7 @@ namespace Terminal
                 DebugtextBox.Text = "";
             }
         }
-        public int? GetCash()
+        public int GetCash()
         {
             return testCash;
         }

@@ -65,7 +65,7 @@ namespace Terminal
 			{
 				openedForm.Invoke(new Action(() =>
 				{
-					if (MessageBox.Show($"Хвататет средтств для выплаты {quantity}", id.ToString(), MessageBoxButtons.YesNo) == DialogResult.Yes)
+					if (MessageBox.Show(openedForm, $"Хвататет средтств для выплаты {quantity}", id.ToString(), MessageBoxButtons.YesNo) == DialogResult.Yes)
 					{
 						canPayout = true;
 					}

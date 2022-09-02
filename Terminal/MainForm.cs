@@ -42,7 +42,7 @@ namespace Terminal
             int? PC = СhoosePCForm.GetPCName(nameWindow, this);
             if (PC != null)
             {
-                int? cash = Intoduction.GetCashTerminal(PC, this);
+                int? cash = Intoduction.GetCashTerminal(PC, this, terminal);
                 if (cash != null)
                 {
                     ConfirmationForm.Replenish(PC.Value, cash.Value, nameWindow, serverProxy, this);
