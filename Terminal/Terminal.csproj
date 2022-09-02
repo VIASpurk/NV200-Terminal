@@ -83,6 +83,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\RoundedPanel.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,7 +96,7 @@
     <Compile Include="TechnicalBreakForm.Designer.cs">
       <DependentUpon>TechnicalBreakForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Terminal.cs" />
+    <Compile Include="EmulTerminal.cs" />
     <Compile Include="WaitingPaymentForm.cs">
       <SubType>Form</SubType>
     </Compile>

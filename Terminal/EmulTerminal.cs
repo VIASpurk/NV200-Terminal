@@ -11,19 +11,19 @@ namespace Terminal
 	/// <summary>
 	/// Класс работы с терминалом
 	/// </summary>
-	public class Terminal : TerminalLibrary.ITerminal
+	public class EmulTerminal : TerminalLibrary.ITerminal
 	{
 		private static int idNext = 0;
 		private int id;
 
-		private Terminal() { }
+		private EmulTerminal() { }
 
 		public event Action<int> ReceivedCash;
 		public event Action<int> PayoutCash;
 
 		public static ITerminal RunEmulator()
 		{
-			var terminal = new Terminal
+			var terminal = new EmulTerminal
 			{
 				id = idNext++
 			};

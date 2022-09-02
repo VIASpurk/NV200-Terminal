@@ -104,11 +104,11 @@ namespace Terminal
 
                 if (SettingsTerminal.Instance.EmulateMode)
                 {
-                    terminal = Terminal.RunEmulator();
+                    terminal = EmulTerminal.RunEmulator();
                 }
                 else
 				{
-                    terminal = Terminal.ConnectToDevice(SettingsTerminal.Instance.ComPort);
+                    terminal = EmulTerminal.ConnectToDevice(SettingsTerminal.Instance.ComPort);
 				}
             }
             catch

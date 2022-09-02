@@ -39,13 +39,17 @@
 			this.labelIntroductonPC = new System.Windows.Forms.Label();
 			this.labelIntroductionText = new System.Windows.Forms.Label();
 			this.labelIntr = new System.Windows.Forms.Label();
+			this.roundedPanel1 = new Terminal.Controls.RoundedPanel();
+			this.roundedPanel2 = new Terminal.Controls.RoundedPanel();
+			this.roundedPanel1.SuspendLayout();
+			this.roundedPanel2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// IntoductionText
 			// 
 			this.IntoductionText.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.IntoductionText.Font = new System.Drawing.Font("Palatino Linotype", 36F);
-			this.IntoductionText.Location = new System.Drawing.Point(90, 375);
+			this.IntoductionText.Location = new System.Drawing.Point(231, 387);
 			this.IntoductionText.Name = "IntoductionText";
 			this.IntoductionText.Size = new System.Drawing.Size(470, 91);
 			this.IntoductionText.TabIndex = 0;
@@ -67,7 +71,7 @@
 			// 
 			this.labelCash.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.labelCash.Font = new System.Drawing.Font("Palatino Linotype", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelCash.Location = new System.Drawing.Point(515, 356);
+			this.labelCash.Location = new System.Drawing.Point(656, 369);
 			this.labelCash.Name = "labelCash";
 			this.labelCash.Size = new System.Drawing.Size(319, 107);
 			this.labelCash.TabIndex = 5;
@@ -114,7 +118,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
 			this.kryptonButtonIntoductionNext.StateNormal.Border.Rounding = 10;
-			this.kryptonButtonIntoductionNext.StateNormal.Content.ShortText.Font = new System.Drawing.Font("Times New Roman", 18.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+			this.kryptonButtonIntoductionNext.StateNormal.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
 			this.kryptonButtonIntoductionNext.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
 			this.kryptonButtonIntoductionNext.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
 			this.kryptonButtonIntoductionNext.TabIndex = 33;
@@ -146,7 +150,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
 			this.kryptonButtonIntoductionCancel.StateNormal.Border.Rounding = 10;
-			this.kryptonButtonIntoductionCancel.StateNormal.Content.ShortText.Font = new System.Drawing.Font("Times New Roman", 18.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+			this.kryptonButtonIntoductionCancel.StateNormal.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
 			this.kryptonButtonIntoductionCancel.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
 			this.kryptonButtonIntoductionCancel.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
 			this.kryptonButtonIntoductionCancel.TabIndex = 34;
@@ -156,9 +160,9 @@
 			// 
 			this.labelIntroductonPC.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.labelIntroductonPC.Font = new System.Drawing.Font("Palatino Linotype", 36F);
-			this.labelIntroductonPC.Location = new System.Drawing.Point(377, 281);
+			this.labelIntroductonPC.Location = new System.Drawing.Point(404, 290);
 			this.labelIntroductonPC.Name = "labelIntroductonPC";
-			this.labelIntroductonPC.Size = new System.Drawing.Size(559, 75);
+			this.labelIntroductonPC.Size = new System.Drawing.Size(438, 75);
 			this.labelIntroductonPC.TabIndex = 36;
 			this.labelIntroductonPC.Text = "Компьютер № 7";
 			// 
@@ -166,31 +170,50 @@
 			// 
 			this.labelIntroductionText.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.labelIntroductionText.Font = new System.Drawing.Font("Palatino Linotype", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelIntroductionText.Location = new System.Drawing.Point(291, 496);
+			this.labelIntroductionText.Location = new System.Drawing.Point(45, 4);
 			this.labelIntroductionText.Name = "labelIntroductionText";
-			this.labelIntroductionText.Size = new System.Drawing.Size(680, 81);
+			this.labelIntroductionText.Size = new System.Drawing.Size(591, 72);
 			this.labelIntroductionText.TabIndex = 37;
 			this.labelIntroductionText.Text = "Автомат сдачи не выдает";
 			// 
 			// labelIntr
 			// 
 			this.labelIntr.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.labelIntr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.labelIntr.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelIntr.Location = new System.Drawing.Point(214, 9);
+			this.labelIntr.Location = new System.Drawing.Point(109, 14);
 			this.labelIntr.Name = "labelIntr";
-			this.labelIntr.Size = new System.Drawing.Size(866, 251);
+			this.labelIntr.Size = new System.Drawing.Size(866, 227);
 			this.labelIntr.TabIndex = 39;
 			this.labelIntr.Text = "Вставьте купюры в купюроприемник. Дождитесь пока в поле \"Внесенная сумма\" появитс" +
     "я сумма внесенных вами денег";
+			// 
+			// roundedPanel1
+			// 
+			this.roundedPanel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.roundedPanel1.BackColor = System.Drawing.Color.White;
+			this.roundedPanel1.Controls.Add(this.labelIntr);
+			this.roundedPanel1.Location = new System.Drawing.Point(126, 12);
+			this.roundedPanel1.Name = "roundedPanel1";
+			this.roundedPanel1.Size = new System.Drawing.Size(1084, 248);
+			this.roundedPanel1.TabIndex = 40;
+			// 
+			// roundedPanel2
+			// 
+			this.roundedPanel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.roundedPanel2.BackColor = System.Drawing.Color.White;
+			this.roundedPanel2.Controls.Add(this.labelIntroductionText);
+			this.roundedPanel2.Location = new System.Drawing.Point(324, 570);
+			this.roundedPanel2.Name = "roundedPanel2";
+			this.roundedPanel2.Size = new System.Drawing.Size(668, 79);
+			this.roundedPanel2.TabIndex = 41;
 			// 
 			// Intoduction
 			// 
 			this.BackColor = System.Drawing.Color.SkyBlue;
 			this.ClientSize = new System.Drawing.Size(1312, 828);
-			this.Controls.Add(this.labelIntr);
+			this.Controls.Add(this.roundedPanel2);
+			this.Controls.Add(this.roundedPanel1);
 			this.Controls.Add(this.labelIntroductonPC);
-			this.Controls.Add(this.labelIntroductionText);
 			this.Controls.Add(this.kryptonButtonIntoductionCancel);
 			this.Controls.Add(this.kryptonButtonIntoductionNext);
 			this.Controls.Add(this.labelPC);
@@ -201,6 +224,8 @@
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Intoduction_FormClosing);
 			this.Load += new System.EventHandler(this.Intoduction_Load);
 			this.Shown += new System.EventHandler(this.Intoduction_Shown);
+			this.roundedPanel1.ResumeLayout(false);
+			this.roundedPanel2.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -221,6 +246,8 @@
         private System.Windows.Forms.Label labelIntroductonPC;
         private System.Windows.Forms.Label labelIntroductionText;
         private System.Windows.Forms.Label labelIntr;
-    }
+		private Controls.RoundedPanel roundedPanel1;
+		private Controls.RoundedPanel roundedPanel2;
+	}
 }
 
