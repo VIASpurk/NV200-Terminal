@@ -49,30 +49,15 @@ namespace Terminal
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.kryptonButtonNext.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.kryptonButtonNext.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Italic);
-			this.kryptonButtonNext.Location = new System.Drawing.Point(433, 582);
+			this.kryptonButtonNext.Location = new System.Drawing.Point(536, 581);
 			this.kryptonButtonNext.Name = "kryptonButtonNext";
-			this.kryptonButtonNext.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			this.kryptonButtonNext.OverrideDefault.Back.Color2 = System.Drawing.Color.DeepSkyBlue;
-			this.kryptonButtonNext.OverrideDefault.Content.ShortText.Font = new System.Drawing.Font("Times New Roman", 18.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-			this.kryptonButtonNext.Size = new System.Drawing.Size(467, 74);
-			this.kryptonButtonNext.StateCommon.Back.Color1 = System.Drawing.Color.SkyBlue;
-			this.kryptonButtonNext.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			this.kryptonButtonNext.Size = new System.Drawing.Size(270, 90);
+			this.kryptonButtonNext.StateCommon.Back.Color1 = System.Drawing.Color.White;
+			this.kryptonButtonNext.StateCommon.Back.Color2 = System.Drawing.Color.White;
 			this.kryptonButtonNext.StateCommon.Back.ColorAlign = ComponentFactory.Krypton.Toolkit.PaletteRectangleAlign.Local;
-			this.kryptonButtonNext.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.TopMiddle;
-			this.kryptonButtonNext.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-			this.kryptonButtonNext.StateCommon.Border.Rounding = 18;
-			this.kryptonButtonNext.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Times New Roman", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-			this.kryptonButtonNext.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-			this.kryptonButtonNext.StateNormal.Back.Color2 = System.Drawing.Color.DarkCyan;
-			this.kryptonButtonNext.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-			this.kryptonButtonNext.StateNormal.Border.Rounding = 18;
-			this.kryptonButtonNext.StateNormal.Content.ShortText.Font = new System.Drawing.Font("Times New Roman", 18.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-			this.kryptonButtonNext.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-			this.kryptonButtonNext.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+			this.kryptonButtonNext.StateCommon.Border.Rounding = 40;
+			this.kryptonButtonNext.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.kryptonButtonNext.StateCommon.Content.ShortText.TextV = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
 			this.kryptonButtonNext.TabIndex = 33;
 			this.kryptonButtonNext.Values.Text = "OK";
 			// 
@@ -102,7 +87,7 @@ namespace Terminal
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.SkyBlue;
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(149)))), ((int)(((byte)(183)))));
 			this.ClientSize = new System.Drawing.Size(1312, 828);
 			this.Controls.Add(this.roundedPanel1);
 			this.Controls.Add(this.kryptonButtonNext);

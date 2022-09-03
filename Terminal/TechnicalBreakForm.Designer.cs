@@ -28,34 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.label1 = new System.Windows.Forms.Label();
+			this.SuspendLayout();
+			// 
+			// label1
+			// 
+			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(317, 382);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(713, 73);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Технический перерыв";
-            // 
-            // TechnicalBreakForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.SkyBlue;
-            this.ClientSize = new System.Drawing.Size(1312, 828);
-            this.Controls.Add(this.label1);
-            this.Name = "TechnicalBreakForm";
-            this.Text = "TechnicalBreakForm";
-            this.Load += new System.EventHandler(this.TechnicalBreakForm_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label1.Location = new System.Drawing.Point(317, 382);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(713, 73);
+			this.label1.TabIndex = 0;
+			this.label1.Text = "Технический перерыв";
+			// 
+			// TechnicalBreakForm
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(149)))), ((int)(((byte)(183)))));
+			this.ClientSize = new System.Drawing.Size(1312, 828);
+			this.Controls.Add(this.label1);
+			this.Name = "TechnicalBreakForm";
+			this.Text = "TechnicalBreakForm";
+			this.Load += new System.EventHandler(this.TechnicalBreakForm_Load);
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
         }
 

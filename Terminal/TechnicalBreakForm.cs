@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetworkLibrary;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TerminalLibrary;
 
 namespace Terminal
 {
@@ -17,7 +19,7 @@ namespace Terminal
             InitializeComponent();
         }
 
-        private void TechnicalBreakForm_Load(object sender, EventArgs e)
+		private void TechnicalBreakForm_Load(object sender, EventArgs e)
         {
             if (!SettingsTerminal.Instance.Debug)
             {

@@ -51,13 +51,18 @@
 			// 
 			// PayoutButton
 			// 
-			this.PayoutButton.BackColor = System.Drawing.Color.Transparent;
+			this.PayoutButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(118)))), ((int)(((byte)(179)))));
+			this.PayoutButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.PayoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.PayoutButton.ForeColor = System.Drawing.Color.White;
 			this.PayoutButton.Location = new System.Drawing.Point(98, 1);
+			this.PayoutButton.Margin = new System.Windows.Forms.Padding(0);
 			this.PayoutButton.Name = "PayoutButton";
-			this.PayoutButton.Size = new System.Drawing.Size(53, 22);
+			this.PayoutButton.Size = new System.Drawing.Size(55, 22);
 			this.PayoutButton.TabIndex = 5;
 			this.PayoutButton.Text = "Выдать";
 			this.PayoutButton.UseVisualStyleBackColor = false;
+			this.PayoutButton.EnabledChanged += new System.EventHandler(this.PayoutButton_EnabledChanged);
 			this.PayoutButton.Click += new System.EventHandler(this.PayoutButton_Click);
 			// 
 			// labelTime
@@ -65,7 +70,7 @@
 			this.labelTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.labelTime.BackColor = System.Drawing.SystemColors.Control;
-			this.labelTime.Location = new System.Drawing.Point(153, 2);
+			this.labelTime.Location = new System.Drawing.Point(155, 2);
 			this.labelTime.Name = "labelTime";
 			this.labelTime.Size = new System.Drawing.Size(72, 20);
 			this.labelTime.TabIndex = 4;
@@ -112,7 +117,7 @@
 			this.Controls.Add(this.pictureBoxPay);
 			this.Margin = new System.Windows.Forms.Padding(0);
 			this.Name = "PaymentControl";
-			this.Size = new System.Drawing.Size(227, 23);
+			this.Size = new System.Drawing.Size(229, 23);
 			this.Load += new System.EventHandler(this.PaymentControl_Load);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxPay)).EndInit();
 			this.ResumeLayout(false);

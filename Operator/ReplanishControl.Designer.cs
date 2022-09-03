@@ -41,7 +41,7 @@
 			this.labelTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.labelTime.BackColor = System.Drawing.SystemColors.Control;
-			this.labelTime.Location = new System.Drawing.Point(153, 2);
+			this.labelTime.Location = new System.Drawing.Point(155, 2);
 			this.labelTime.Name = "labelTime";
 			this.labelTime.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
 			this.labelTime.Size = new System.Drawing.Size(72, 20);
@@ -71,10 +71,12 @@
 			// 
 			// PayoutButton
 			// 
-			this.PayoutButton.BackColor = System.Drawing.Color.Transparent;
+			this.PayoutButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(118)))), ((int)(((byte)(179)))));
+			this.PayoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.PayoutButton.ForeColor = System.Drawing.Color.White;
 			this.PayoutButton.Location = new System.Drawing.Point(98, 1);
 			this.PayoutButton.Name = "PayoutButton";
-			this.PayoutButton.Size = new System.Drawing.Size(53, 22);
+			this.PayoutButton.Size = new System.Drawing.Size(55, 22);
 			this.PayoutButton.TabIndex = 9;
 			this.PayoutButton.Text = "Внести";
 			this.PayoutButton.UseVisualStyleBackColor = false;
@@ -103,7 +105,7 @@
 			this.Controls.Add(this.pictureBoxReplanuish);
 			this.Margin = new System.Windows.Forms.Padding(0);
 			this.Name = "ReplanishControl";
-			this.Size = new System.Drawing.Size(227, 23);
+			this.Size = new System.Drawing.Size(229, 23);
 			this.Load += new System.EventHandler(this.ReplanishControl_Load);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxReplanuish)).EndInit();
 			this.ResumeLayout(false);

@@ -13,11 +13,12 @@ namespace Terminal
 {
     public partial class СhoosePCForm : Form
     {
-        private string namePC = "";
+        private KryptonButton selectedButton;
 
         public СhoosePCForm()
         {
             InitializeComponent();
+
             if (!SettingsTerminal.Instance.Debug)
             {
                 FormBorderStyle = FormBorderStyle.None;
@@ -36,23 +37,17 @@ namespace Terminal
 
                 DialogResult dr = choosePC.ShowDialog(owner);
 
-                if (dr == DialogResult.Cancel)
+                if (dr == DialogResult.Cancel || choosePC.selectedButton == null)
                 {
                     return null;
                 }
-                if (int.TryParse(choosePC.namePC, out int pc))
+
+                if (int.TryParse(choosePC.selectedButton.Text, out int pc))
                 {
                     return pc;
                 }
             }
             return null;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            KryptonButton button = (KryptonButton)sender;
-            namePC = button.Text;
-            kryptonButtonNext.Visible = true;
         }
 
         private void DepositingForm_Load(object sender, EventArgs e)
@@ -104,24 +99,41 @@ namespace Terminal
             Close();
         }
 
-        private void Next_Click(object sender, EventArgs e)
+        private void PCButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void tableChoisePC_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.kryptonButton1.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.kryptonButton1.OverrideDefault.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             KryptonButton button = (KryptonButton)sender;
-            namePC = button.Text;
+            SelectButton(button);
             kryptonButtonNext.Visible = true;
+        }
+
+        private void SelectButton(KryptonButton newButton)
+		{
+            if (newButton == selectedButton)
+			{
+                return;
+			}
+
+            if (selectedButton != null)
+			{
+                selectedButton.StateNormal.Back.Color1 = selectedButton.StateCommon.Back.Color1;
+                selectedButton.StateNormal.Back.Color2 = selectedButton.StateCommon.Back.Color2;
+                selectedButton.StateTracking.Back.Color1 = selectedButton.StateCommon.Back.Color1;
+                selectedButton.StateTracking.Back.Color2 = selectedButton.StateCommon.Back.Color2;
+                selectedButton.OverrideFocus.Back.Color1 = selectedButton.StateCommon.Back.Color1;
+                selectedButton.OverrideFocus.Back.Color2 = selectedButton.StateCommon.Back.Color2;
+                selectedButton.OverrideDefault.Back.Color1 = selectedButton.StateCommon.Back.Color1;
+                selectedButton.OverrideDefault.Back.Color2 = selectedButton.StateCommon.Back.Color2;
+            }
+
+            selectedButton = newButton;
+            selectedButton.StateNormal.Back.Color1 = selectedButton.StatePressed.Back.Color1;
+            selectedButton.StateNormal.Back.Color2 = selectedButton.StatePressed.Back.Color2;
+            selectedButton.StateTracking.Back.Color1 = selectedButton.StatePressed.Back.Color1;
+            selectedButton.StateTracking.Back.Color2 = selectedButton.StatePressed.Back.Color2;
+            selectedButton.OverrideFocus.Back.Color1 = selectedButton.StatePressed.Back.Color1;
+            selectedButton.OverrideFocus.Back.Color2 = selectedButton.StatePressed.Back.Color2;
+            selectedButton.OverrideDefault.Back.Color1 = selectedButton.StatePressed.Back.Color1;
+            selectedButton.OverrideDefault.Back.Color2 = selectedButton.StatePressed.Back.Color2;
         }
     }
 }
-

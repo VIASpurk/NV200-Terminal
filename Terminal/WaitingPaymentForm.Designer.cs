@@ -77,7 +77,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.SkyBlue;
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(149)))), ((int)(((byte)(183)))));
 			this.ClientSize = new System.Drawing.Size(1312, 828);
 			this.Controls.Add(this.labelInfoWaiting);
 			this.Controls.Add(this.labelTimeWaiting);

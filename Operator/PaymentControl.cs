@@ -50,10 +50,10 @@ namespace Operator
             textBoxPayment.BorderStyle = BorderStyle.None;
             textBoxPayment.ForeColor = Color.Black;
 
-            labelPC.BackColor = Color.GreenYellow;
-            textBoxPayment.BackColor = Color.GreenYellow;
-            pictureBoxPay.BackColor = Color.GreenYellow;
-            labelTime.BackColor = Color.GreenYellow;
+            labelPC.BackColor = ColorConstants.GreenColor;
+            textBoxPayment.BackColor = ColorConstants.GreenColor;
+            pictureBoxPay.BackColor = ColorConstants.GreenColor;
+            labelTime.BackColor = ColorConstants.GreenColor;
         }
 
         private void SetFailed()
@@ -83,7 +83,7 @@ namespace Operator
             if (PayoutButton.Enabled)
             {
                 PayoutButton.Enabled = false;
-
+                textBoxPayment.ReadOnly = true;
             }
             else
             {
@@ -136,7 +136,17 @@ namespace Operator
             }
         }
 
-      
-
+		private void PayoutButton_EnabledChanged(object sender, EventArgs e)
+		{
+            PayoutButton.ForeColor = Color.White;
+            if (PayoutButton.Enabled)
+			{
+                PayoutButton.BackColor = ColorConstants.BlueColor;
+            }
+            else
+			{
+                PayoutButton.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
+            }
+		}
 	}
 }

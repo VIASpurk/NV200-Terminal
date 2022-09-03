@@ -36,10 +36,10 @@ namespace Operator
             PayoutButton.Visible = false;
             pictureBoxReplanuish.Visible = true;
 
-            labelPC.BackColor = Color.PaleVioletRed;
-            labelSum.BackColor = Color.PaleVioletRed;
-            pictureBoxReplanuish.BackColor = Color.PaleVioletRed;
-            labelTime.BackColor = Color.PaleVioletRed;
+            labelPC.BackColor = ColorConstants.RedColor;
+            labelSum.BackColor = ColorConstants.RedColor;
+            pictureBoxReplanuish.BackColor = ColorConstants.RedColor;
+            labelTime.BackColor = ColorConstants.RedColor;
         }
 
         private void ReplanishControl_Load(object sender, EventArgs e)
