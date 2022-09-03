@@ -34,14 +34,13 @@ namespace Terminal
             {
                 choosePC.Text = title;
                 choosePC.labelChoiseText.Text = title;
-
                 DialogResult dr = choosePC.ShowDialog(owner);
-
+                
                 if (dr == DialogResult.Cancel || choosePC.selectedButton == null)
                 {
                     return null;
                 }
-
+                
                 if (int.TryParse(choosePC.selectedButton.Text, out int pc))
                 {
                     return pc;

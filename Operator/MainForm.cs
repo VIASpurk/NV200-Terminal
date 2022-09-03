@@ -15,11 +15,30 @@ namespace Operator
     public partial class MainForm : Form
     {
         ServerHost server;
+
         public MainForm()
         {
             InitializeComponent();
-
-            this.Location = new Point(Settings.Instance.WindowPositionX, Settings.Instance.WindowPositionY);
+            var x = Settings.Instance.WindowPositionX;
+            var y = Settings.Instance.WindowPositionY;
+            
+            if (x > Screen.PrimaryScreen.Bounds.Width)
+            {
+                x = Screen.PrimaryScreen.Bounds.Width - Width;
+            }
+            else if (x < 0)
+            {
+                x = 0;
+            }
+            if (y > Screen.PrimaryScreen.Bounds.Height)
+            {
+                y = Screen.PrimaryScreen.Bounds.Height - Height;
+            }
+            else if (y < 0)
+            { 
+                y = 0; 
+            }
+            this.Location = new Point(x, y);
             this.Size = new Size(this.Size.Width, Settings.Instance.WindowHeight);
         }
         

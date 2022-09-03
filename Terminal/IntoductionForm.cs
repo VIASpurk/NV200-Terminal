@@ -35,7 +35,6 @@ namespace Terminal
                 {
                     return intoduction.Cash;
                 }
-
                 return null;
             }
         }
@@ -48,8 +47,7 @@ namespace Terminal
 
             if (dr == DialogResult.OK)
             {
-
-                Cash = debugForm.GetCash();
+                Cash += debugForm.GetCash();
                 labelCash.Text = Cash.ToString();
                 kryptonButtonIntoductionCancel.Visible = false;
                 kryptonButtonIntoductionNext.Visible = true;
@@ -64,7 +62,6 @@ namespace Terminal
         {
             timerIntroduction.Enabled = true;
             kryptonButtonIntoductionNext.Visible = false;
-
             if (!SettingsTerminal.Instance.Debug)
             {
                 IntoductionDebug.Visible = false;
@@ -85,7 +82,6 @@ namespace Terminal
 		private void Terminal_ReceivedCash(int obj)
 		{
             timerIntroduction.Enabled = false;
-
             Cash += obj;
             Invoke(new Action(() =>
             {

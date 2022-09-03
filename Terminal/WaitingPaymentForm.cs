@@ -111,7 +111,6 @@ namespace Terminal
             {
                 payoutResult.ErrorMessage = "Ошибка: " + exc.Message;
             }
-
             serverProxy.PayoutResult(payoutResult);
 
             this.Invoke(new Action(() =>
