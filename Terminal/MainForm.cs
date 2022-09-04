@@ -113,18 +113,28 @@ namespace Terminal
                 serverProxy.CancelTechnicalBreak += ServerProxy_CancelTechnicalBreak;
                 serverProxy.NeedCashInfo += ServerProxy_NeedCashInfo;
 
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(this, "Сервер не доступен. " + exc.Message);
+                Close();
+                return;
+            }
+
+            try
+            {
                 if (SettingsTerminal.Instance.EmulateMode)
                 {
                     terminal = EmulTerminal.RunEmulator();
                 }
                 else
-				{
+                {
                     terminal = EmulTerminal.ConnectToDevice(SettingsTerminal.Instance.ComPort);
-				}
+                }
             }
-            catch
+            catch(Exception exc)
             {
-                MessageBox.Show(this, "Сервер не доступен");
+                MessageBox.Show(this, "Ошибка подключения терминала: " + exc.Message);
                 Close();
             }
         }

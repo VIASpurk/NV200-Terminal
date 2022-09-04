@@ -21,12 +21,13 @@ namespace Terminal
 
         private bool waitTerminalPayout;
         public int time = 60;
-        public int time2 = 65;
+        public int errorTime = 5;
         private int PCName;
 
         public WaitingPaymentForm()
         {
             InitializeComponent();
+
             if (!SettingsTerminal.Instance.Debug)
             {
                 FormBorderStyle = FormBorderStyle.None;
@@ -49,8 +50,7 @@ namespace Terminal
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            time = time - 1;
-            time2 = time2 - 1;
+            time--;
             if (time < 10)
             {
                 labelTimeWaiting.Text = "0" + time.ToString();
@@ -62,21 +62,15 @@ namespace Terminal
 
             if (time == 0)
             {
-                pictureBoxWaiting.Visible = false;
-                labelTimeWaiting.Visible = false;
-                labelInfoWaiting.Visible = true;
-            }
-            if (time2 == 0)
-            {
-                timer1.Enabled = false;
-                Close();
+                WaitTimer.Enabled = false;
+                tabControl1.SelectedTab = TabPageLater;
+                ErrorTimer.Enabled = true;
             }
         }
 
         private void ConfirmationForm_Shown(object sender, EventArgs e)
         {
-            timer1.Enabled = true;
-            labelInfoWaiting.Visible = false;
+            WaitTimer.Enabled = true;
             serverProxy.Payment += ServerProxy_Payment;
             serverProxy.PayoutRequest(PCName);
         }
@@ -94,6 +88,13 @@ namespace Terminal
                 if (terminal.CanPayout(obj.Quantity, out string error) &&
                     terminal.Payout(obj.Quantity, out error))
                 {
+                    WaitTimer.Enabled = false;
+                    Invoke(new Action(() =>
+                    {
+                        PayoutLabel.Text = obj.Quantity.ToString();
+                        tabControl1.SelectedTab = TabPagePayout;
+                    }));
+
                     terminal.PayoutCash += Terminal_PayoutCash;
                     waitTerminalPayout = true;
 
@@ -130,9 +131,15 @@ namespace Terminal
             serverProxy.Payment -= ServerProxy_Payment;
         }
 
-        private void WaitingPaymentForm_Load(object sender, EventArgs e)
-        {
+		private void ErrorTimer_Tick(object sender, EventArgs e)
+		{
+            errorTime--;
 
+            if (errorTime == 0)
+            {
+                ErrorTimer.Enabled = false;
+                Close();
+            }
         }
     }
 }

@@ -69,7 +69,7 @@ namespace Terminal
                         case "comPort":
                             if (!string.IsNullOrWhiteSpace(subs[1]))
                             {
-                                ComPort = subs[1];
+                                ComPort = subs[1].Trim();
                             }
                             else
                             {

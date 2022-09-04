@@ -43,11 +43,11 @@ namespace Terminal
 		/// <param name="quantity"></param>
 		public bool Payout(int quantity, out string log)
 		{
-			log = canPayout ? null : "Не достаточно средств для выплаты";
+			log = canPayout ? null : "Недостаточно средств для выплаты";
 
 			if (canPayout)
 			{
-				Task.Run( async () => { await Task.Delay(1000); PayoutCash?.Invoke(quantity); });
+				Task.Run( async () => { await Task.Delay(5000); PayoutCash?.Invoke(quantity); });
 			}
 			return canPayout;
 		}

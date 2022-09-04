@@ -971,8 +971,8 @@ namespace TerminalLibrary.Classes
 						sb.Append("Dispensed note(s)\r\n");
 						UpdateData(out log);
 						EnableValidator(out log);
-						i += (byte)((response[i + 1] * 7) + 1);
 						DispensedNote?.Invoke(CHelpers.ConvertBytesToInt32(response, i + 2));
+						i += (byte)((response[i + 1] * 7) + 1);
 						break;
 					// The payout device is in the process of emptying all its stored notes to the cashbox. This
 					// will continue to poll until the device is empty.

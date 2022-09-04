@@ -17,6 +17,7 @@ namespace Terminal
         public ConfirmationForm()
         {
             InitializeComponent();
+
             if (!SettingsTerminal.Instance.Debug)
             {
                 FormBorderStyle = FormBorderStyle.None;
