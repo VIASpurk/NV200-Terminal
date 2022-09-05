@@ -7,9 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Terminal.Controls;
 
 namespace Terminal
 {
+    
     public partial class DebugForm : Form
     {
         private int testCash;
@@ -45,7 +47,10 @@ namespace Terminal
                 {
                     MessageBox.Show("Вводите только числа без запятых");
                 }
-          
+            
+
+
+
 
         }
 

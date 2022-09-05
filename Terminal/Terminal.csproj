@@ -83,6 +83,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\RoundCorneredProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\RoundedPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -135,6 +138,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\RoundCorneredProgressBar.resx">
+      <DependentUpon>RoundCorneredProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\RoundedPanel.resx">
       <DependentUpon>RoundedPanel.cs</DependentUpon>
     </EmbeddedResource>

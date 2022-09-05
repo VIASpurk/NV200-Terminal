@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using Terminal.Controls;
 using TerminalLibrary;
 
 namespace Terminal
@@ -18,6 +19,7 @@ namespace Terminal
     {
         IServerProxy serverProxy;
         ITerminal terminal;
+        
 
         private bool waitTerminalPayout;
         public int time = 60;
@@ -66,6 +68,7 @@ namespace Terminal
                 tabControl1.SelectedTab = TabPageLater;
                 ErrorTimer.Enabled = true;
             }
+            
         }
 
         private void ConfirmationForm_Shown(object sender, EventArgs e)
@@ -73,6 +76,10 @@ namespace Terminal
             WaitTimer.Enabled = true;
             serverProxy.Payment += ServerProxy_Payment;
             serverProxy.PayoutRequest(PCName);
+            
+            roundCorneredProgressBar1.Animate();
+
+
         }
 
         private void ServerProxy_Payment(PayoutData obj)
@@ -81,10 +88,10 @@ namespace Terminal
             PayoutResult payoutResult = new PayoutResult();
             payoutResult.PCName = obj.PCName;
             payoutResult.Quantity = obj.Quantity;
+            
 
             try
             {
-
                 if (terminal.CanPayout(obj.Quantity, out string error) &&
                     terminal.Payout(obj.Quantity, out error))
                 {
@@ -97,6 +104,7 @@ namespace Terminal
 
                     terminal.PayoutCash += Terminal_PayoutCash;
                     waitTerminalPayout = true;
+                    
 
                     while (waitTerminalPayout)
                     {
@@ -141,5 +149,7 @@ namespace Terminal
                 Close();
             }
         }
+
+        
     }
 }
