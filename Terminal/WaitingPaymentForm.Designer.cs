@@ -34,6 +34,7 @@
 			this.ErrorTimer = new System.Windows.Forms.Timer(this.components);
 			this.tabControl1 = new Terminal.Controls.TabControlWithoutHeader();
 			this.TabPageLoad = new System.Windows.Forms.TabPage();
+			this.roundedPanel1 = new Terminal.Controls.RoundedPanel();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.labelTimeWaiting = new System.Windows.Forms.Label();
@@ -43,13 +44,12 @@
 			this.TabPagePayout = new System.Windows.Forms.TabPage();
 			this.PayoutLabel = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.roundedPanel1 = new Terminal.Controls.RoundedPanel();
 			this.tabControl1.SuspendLayout();
 			this.TabPageLoad.SuspendLayout();
+			this.roundedPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxWaiting)).BeginInit();
 			this.TabPageLater.SuspendLayout();
 			this.TabPagePayout.SuspendLayout();
-			this.roundedPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// WaitTimer
@@ -103,6 +103,19 @@
 			this.TabPageLoad.Size = new System.Drawing.Size(1280, 610);
 			this.TabPageLoad.TabIndex = 0;
 			this.TabPageLoad.Text = "крутилка";
+			// 
+			// roundedPanel1
+			// 
+			this.roundedPanel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.roundedPanel1.BackColor = System.Drawing.Color.White;
+			this.roundedPanel1.Controls.Add(this.label2);
+			this.roundedPanel1.Controls.Add(this.label1);
+			this.roundedPanel1.Controls.Add(this.labelTimeWaiting);
+			this.roundedPanel1.Controls.Add(this.pictureBoxWaiting);
+			this.roundedPanel1.Location = new System.Drawing.Point(214, 111);
+			this.roundedPanel1.Name = "roundedPanel1";
+			this.roundedPanel1.Size = new System.Drawing.Size(879, 337);
+			this.roundedPanel1.TabIndex = 8;
 			// 
 			// label2
 			// 
@@ -212,18 +225,6 @@
 			this.label3.TabIndex = 5;
 			this.label3.Text = "Сумма к выдаче";
 			// 
-			// roundedPanel1
-			// 
-			this.roundedPanel1.BackColor = System.Drawing.Color.White;
-			this.roundedPanel1.Controls.Add(this.label2);
-			this.roundedPanel1.Controls.Add(this.label1);
-			this.roundedPanel1.Controls.Add(this.labelTimeWaiting);
-			this.roundedPanel1.Controls.Add(this.pictureBoxWaiting);
-			this.roundedPanel1.Location = new System.Drawing.Point(214, 111);
-			this.roundedPanel1.Name = "roundedPanel1";
-			this.roundedPanel1.Size = new System.Drawing.Size(879, 337);
-			this.roundedPanel1.TabIndex = 8;
-			// 
 			// WaitingPaymentForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -239,13 +240,13 @@
 			this.Shown += new System.EventHandler(this.ConfirmationForm_Shown);
 			this.tabControl1.ResumeLayout(false);
 			this.TabPageLoad.ResumeLayout(false);
+			this.roundedPanel1.ResumeLayout(false);
+			this.roundedPanel1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxWaiting)).EndInit();
 			this.TabPageLater.ResumeLayout(false);
 			this.TabPageLater.PerformLayout();
 			this.TabPagePayout.ResumeLayout(false);
 			this.TabPagePayout.PerformLayout();
-			this.roundedPanel1.ResumeLayout(false);
-			this.roundedPanel1.PerformLayout();
 			this.ResumeLayout(false);
 
         }
