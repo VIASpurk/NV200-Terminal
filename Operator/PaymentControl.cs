@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Operator
 {
-    public partial class PaymentControl : UserControl
+    public partial class PaymentControl : BaseInfoControl
     {
         public PaymentControl()
         {

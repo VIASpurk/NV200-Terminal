@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Operator
 {
-    public partial class ReplanishControl : UserControl
+    public partial class ReplanishControl : BaseInfoControl
     {
         public ReplanishControl()
         {

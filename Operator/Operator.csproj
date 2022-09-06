@@ -58,6 +58,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionInfo.cs" />
+    <Compile Include="BaseInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ColorConstants.cs" />
     <Compile Include="Controls\CashTextBox.cs">
       <SubType>UserControl</SubType>
