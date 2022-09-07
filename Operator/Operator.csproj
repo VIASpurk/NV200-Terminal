@@ -62,6 +62,7 @@
     <Compile Include="BaseInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Logger.cs" />
     <Compile Include="ColorConstants.cs" />
     <Compile Include="Controls\CashTextBox.cs">
       <SubType>UserControl</SubType>

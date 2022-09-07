@@ -38,7 +38,7 @@ namespace Operator
             stopwach.Start();
             timerPay.Enabled = true;
             NamePC = NamePC;
-            textBoxPayment.Text = "100";
+            //textBoxPayment.Text = "100";
         }
 
         private void SetCompleted()

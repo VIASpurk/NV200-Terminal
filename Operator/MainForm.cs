@@ -9,6 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+using Zyan.Communication.Protocols.Tcp.DuplexChannel;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Operator
 {
@@ -22,6 +25,7 @@ namespace Operator
             var x = Settings.Instance.WindowPositionX;
             var y = Settings.Instance.WindowPositionY;
             
+
             if (x > Screen.PrimaryScreen.Bounds.Width)
             {
                 x = Screen.PrimaryScreen.Bounds.Width - Width;
@@ -44,14 +48,13 @@ namespace Operator
         
         public string testCells;
         private bool ModeTechnikalBreak;
+        
 
         private void StatusBoardForm_Load(object sender, EventArgs e)
         {
             server = ServerHost.StartServer();
             server.ReplenishmentRequest += Server_ReplenishmentRequest;
             server.PayoutRequest += Server_PayoutRequest;
-            
-            
         }
 
         private void Server_PayoutRequest(PayoutRequest obj)
@@ -144,10 +147,31 @@ namespace Operator
 
         private void StatusBoardForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Settings.Instance.WindowHeight = this.Size.Height;
-            Settings.Instance.WindowPositionX = this.Location.X;
-            Settings.Instance.WindowPositionY = this.Location.Y;
-            Settings.Instance.SaveConfig();
+            MessageBoxButtons messageBoxButtons = MessageBoxButtons.YesNo;
+            DialogResult result;
+            result = MessageBox.Show("Вы точно хотите закрыть программу", "Закрытие программы", messageBoxButtons);
+            if (result == DialogResult.Yes)
+            {
+                Settings.Instance.WindowHeight = this.Size.Height;
+                Settings.Instance.WindowPositionX = this.Location.X;
+                Settings.Instance.WindowPositionY = this.Location.Y;
+                Settings.Instance.SaveConfig();
+            }
+             else
+            {
+              e.Cancel = true;
+            } 
+        }
+
+        private void WriteControlsInLog()
+        {
+            List<ActionInfo> list = new List<ActionInfo>(20);
+            foreach (BaseInfoControl control in StatusPanel.Controls)
+            {
+                list.Add(control.CurrentInfo); 
+                              
+            }
+            
         }
 
         

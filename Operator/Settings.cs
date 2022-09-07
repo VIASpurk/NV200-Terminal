@@ -104,14 +104,11 @@ namespace Operator
                         case "Debug":
                             if (!string.IsNullOrWhiteSpace(subs[1]))
                             {
-
                                 if (bool.TryParse(subs[1], out bool value))
                                 {
                                     Debug = value;
                                 }
-
-
-                            }
+                             }
                             else
                             {
                                 needSaveConfig = true;
@@ -142,7 +139,7 @@ namespace Operator
             }
             catch
             {
-                throw new Exception("Нет доступа у файлу настроек для записи");
+                throw new Exception("Нет доступа к файлу настроек для записи");
             }
         }
     }
