@@ -55,5 +55,11 @@ namespace NetworkLibrary
 		/// </summary>
 		/// <param name="data"></param>
 		void SendCashInfo(CashInfo[] data);
+
+		/// <summary>
+		/// Пинг сервера
+		/// </summary>
+		/// <returns></returns>
+		DateTime Ping();
 	}
 }

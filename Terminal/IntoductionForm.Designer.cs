@@ -123,9 +123,9 @@
 			this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.label1.ForeColor = System.Drawing.Color.White;
-			this.label1.Location = new System.Drawing.Point(260, 165);
+			this.label1.Location = new System.Drawing.Point(260, 152);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(805, 199);
+			this.label1.Size = new System.Drawing.Size(805, 117);
 			this.label1.TabIndex = 43;
 			this.label1.Text = "ВСТАВЬТЕ КУПЮРЫ В КУПЮРОПРИЕМНИК. ДОЖДИТЕСЬ ПОКА В ПОЛЕ \"ВНЕСЕННАЯ СУММА\" ПОЯВИТС" +
     "Я СУММА ВНЕСЕННЫХ ВАМИ ДЕНЕГ";

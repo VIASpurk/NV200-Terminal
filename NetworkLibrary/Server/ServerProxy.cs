@@ -57,5 +57,10 @@ namespace NetworkLibrary.Server
 		{
 			NeedCashInfoResultEvent?.Invoke(data);
 		}
+
+		public DateTime Ping()
+		{
+			return DateTime.Now;
+		}
 	}
 }

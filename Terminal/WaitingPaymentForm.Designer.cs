@@ -42,14 +42,18 @@
 			this.TabPageLater = new System.Windows.Forms.TabPage();
 			this.labelInfoWaiting = new System.Windows.Forms.Label();
 			this.TabPagePayout = new System.Windows.Forms.TabPage();
-			this.PayoutLabel = new System.Windows.Forms.Label();
+			this.roundedPanel2 = new Terminal.Controls.RoundedPanel();
 			this.label3 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.tabControl1.SuspendLayout();
 			this.TabPageLoad.SuspendLayout();
 			this.roundedPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxWaiting)).BeginInit();
 			this.TabPageLater.SuspendLayout();
 			this.TabPagePayout.SuspendLayout();
+			this.roundedPanel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// WaitTimer
@@ -191,8 +195,7 @@
 			// TabPagePayout
 			// 
 			this.TabPagePayout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(90)))));
-			this.TabPagePayout.Controls.Add(this.PayoutLabel);
-			this.TabPagePayout.Controls.Add(this.label3);
+			this.TabPagePayout.Controls.Add(this.roundedPanel2);
 			this.TabPagePayout.Location = new System.Drawing.Point(4, 22);
 			this.TabPagePayout.Name = "TabPagePayout";
 			this.TabPagePayout.Padding = new System.Windows.Forms.Padding(3);
@@ -200,30 +203,52 @@
 			this.TabPagePayout.TabIndex = 2;
 			this.TabPagePayout.Text = "выплата";
 			// 
-			// PayoutLabel
+			// roundedPanel2
 			// 
-			this.PayoutLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.PayoutLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.PayoutLabel.Font = new System.Drawing.Font("Times New Roman", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.PayoutLabel.ForeColor = System.Drawing.Color.White;
-			this.PayoutLabel.Location = new System.Drawing.Point(677, 198);
-			this.PayoutLabel.Name = "PayoutLabel";
-			this.PayoutLabel.Size = new System.Drawing.Size(188, 55);
-			this.PayoutLabel.TabIndex = 6;
-			this.PayoutLabel.Text = "0";
-			this.PayoutLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.roundedPanel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.roundedPanel2.BackColor = System.Drawing.Color.White;
+			this.roundedPanel2.Controls.Add(this.label3);
+			this.roundedPanel2.Controls.Add(this.label4);
+			this.roundedPanel2.Controls.Add(this.pictureBox1);
+			this.roundedPanel2.Location = new System.Drawing.Point(214, 111);
+			this.roundedPanel2.Name = "roundedPanel2";
+			this.roundedPanel2.Size = new System.Drawing.Size(879, 337);
+			this.roundedPanel2.TabIndex = 9;
 			// 
 			// label3
 			// 
 			this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
 			this.label3.AutoSize = true;
-			this.label3.Font = new System.Drawing.Font("Times New Roman", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.label3.ForeColor = System.Drawing.Color.White;
-			this.label3.Location = new System.Drawing.Point(322, 198);
+			this.label3.Font = new System.Drawing.Font("Times New Roman", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(90)))));
+			this.label3.Location = new System.Drawing.Point(328, 157);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(347, 55);
-			this.label3.TabIndex = 5;
-			this.label3.Text = "Сумма к выдаче";
+			this.label3.Size = new System.Drawing.Size(385, 31);
+			this.label3.TabIndex = 7;
+			this.label3.Text = "ПОЖАЛУЙСТА, ПОДОЖДИТЕ";
+			// 
+			// label4
+			// 
+			this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.label4.AutoSize = true;
+			this.label4.Font = new System.Drawing.Font("Times New Roman", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(90)))));
+			this.label4.Location = new System.Drawing.Point(238, 70);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(633, 55);
+			this.label4.TabIndex = 6;
+			this.label4.Text = "ВЫПОЛНЕНИЕ ОПЕРАЦИИ";
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.pictureBox1.Image = global::Terminal.Properties.Resources.hug;
+			this.pictureBox1.Location = new System.Drawing.Point(16, 70);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(208, 190);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pictureBox1.TabIndex = 2;
+			this.pictureBox1.TabStop = false;
 			// 
 			// WaitingPaymentForm
 			// 
@@ -246,7 +271,9 @@
 			this.TabPageLater.ResumeLayout(false);
 			this.TabPageLater.PerformLayout();
 			this.TabPagePayout.ResumeLayout(false);
-			this.TabPagePayout.PerformLayout();
+			this.roundedPanel2.ResumeLayout(false);
+			this.roundedPanel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -263,9 +290,11 @@
 		private System.Windows.Forms.TabPage TabPageLater;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TabPage TabPagePayout;
-		private System.Windows.Forms.Label PayoutLabel;
-		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Timer ErrorTimer;
 		private Controls.RoundedPanel roundedPanel1;
+		private Controls.RoundedPanel roundedPanel2;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.PictureBox pictureBox1;
 	}
 }

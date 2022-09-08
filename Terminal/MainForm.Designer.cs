@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.kryptonButtonDepositing = new ComponentFactory.Krypton.Toolkit.KryptonButton();
 			this.kryptonButtonWithdrawal = new ComponentFactory.Krypton.Toolkit.KryptonButton();
 			this.labelIntroductonPC = new System.Windows.Forms.Label();
+			this.PingTimer = new System.Windows.Forms.Timer(this.components);
 			this.SuspendLayout();
 			// 
 			// kryptonButtonDepositing
@@ -73,7 +75,7 @@
 			this.kryptonButtonDepositing.TabIndex = 1;
 			this.kryptonButtonDepositing.TabStop = false;
 			this.kryptonButtonDepositing.Values.Text = "Пополнение";
-			this.kryptonButtonDepositing.Click += new System.EventHandler(this.kryptonButton1_Click);
+			this.kryptonButtonDepositing.Click += new System.EventHandler(this.KryptonButton1_Click);
 			// 
 			// kryptonButtonWithdrawal
 			// 
@@ -113,7 +115,7 @@
 			this.kryptonButtonWithdrawal.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold);
 			this.kryptonButtonWithdrawal.TabIndex = 2;
 			this.kryptonButtonWithdrawal.Values.Text = "Снятие";
-			this.kryptonButtonWithdrawal.Click += new System.EventHandler(this.kryptonButtonWithdrawal_Click);
+			this.kryptonButtonWithdrawal.Click += new System.EventHandler(this.KryptonButtonWithdrawal_Click);
 			// 
 			// labelIntroductonPC
 			// 
@@ -127,6 +129,11 @@
 			this.labelIntroductonPC.TabIndex = 0;
 			this.labelIntroductonPC.Text = "Выберите операцию";
 			this.labelIntroductonPC.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// PingTimer
+			// 
+			this.PingTimer.Interval = 500;
+			this.PingTimer.Tick += new System.EventHandler(this.PingTimer_Tick);
 			// 
 			// MainForm
 			// 
@@ -152,5 +159,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButtonDepositing;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButtonWithdrawal;
         private System.Windows.Forms.Label labelIntroductonPC;
+		private System.Windows.Forms.Timer PingTimer;
 	}
 }

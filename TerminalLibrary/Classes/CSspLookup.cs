@@ -134,7 +134,7 @@ namespace TerminalLibrary.Classes
 			XmlDocument document = new XmlDocument();
 			SspCommand SspCom = new SspCommand();
 			int i = 0;
-			document.Load("Resources/Commands.xml");
+			document.LoadXml(Properties.Resources.Commands);
 
 			XmlNodeList nodeList = document.DocumentElement.SelectNodes("/Root/CommandInfo");
 
@@ -198,7 +198,7 @@ namespace TerminalLibrary.Classes
 			XmlDocument document = new XmlDocument();
 			SspGenericResponse SspGenericResponse = new SspGenericResponse();
 			int i = 0;
-			document.Load("Resources/GenericResponses.xml");
+			document.LoadXml(Properties.Resources.GenericResponses);
 
 			XmlNodeList nodeList = document.DocumentElement.SelectNodes("/Root/GenericResponseInfo");
 			//Loop through all GenericResponseInfo nodes in /Root.
@@ -223,7 +223,7 @@ namespace TerminalLibrary.Classes
 			XmlDocument document = new XmlDocument();
 			SspPollResponse SspPoll = new SspPollResponse();
 			int i = 0;
-			document.Load("Resources/PollResponses.xml");
+			document.LoadXml(Properties.Resources.PollResponses);
 
 			XmlNodeList nodeList = document.DocumentElement.SelectNodes("/Root/PollResponseInfo");
 

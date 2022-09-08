@@ -83,6 +83,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionInfo.cs" />
+    <Compile Include="Controls\RoundCorneredProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\RoundedPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -94,6 +98,18 @@
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TerminalErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TerminalErrorForm.Designer.cs">
+      <DependentUpon>TerminalErrorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NetworkErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NetworkErrorForm.Designer.cs">
+      <DependentUpon>NetworkErrorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TechnicalBreakForm.cs">
       <SubType>Form</SubType>
@@ -135,6 +151,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\RoundCorneredProgressBar.resx">
+      <DependentUpon>RoundCorneredProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\RoundedPanel.resx">
       <DependentUpon>RoundedPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +165,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DebugForm.resx">
       <DependentUpon>DebugForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TerminalErrorForm.resx">
+      <DependentUpon>TerminalErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NetworkErrorForm.resx">
+      <DependentUpon>NetworkErrorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TechnicalBreakForm.resx">
       <DependentUpon>TechnicalBreakForm.cs</DependentUpon>

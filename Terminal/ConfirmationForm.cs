@@ -26,27 +26,8 @@ namespace Terminal
                 MaximizeBox = false;
             }
         }
-        IServerProxy serverProxy;
-        public int time = 60;
-        
-        public static void Replenish(int PCName, int cash, string nameWindow, IServerProxy serverProxy, IWin32Window owner)
-        {
-            using (ConfirmationForm cf = new ConfirmationForm())
-            {
-                cf.serverProxy = serverProxy;
-                cf.serverProxy.Replenish(PCName, cash);
-                cf.Text = nameWindow;
-                DialogResult dialogcf = cf.ShowDialog(owner);
-            }
-
-        }
-
-        private void Confirmation_Load(object sender, EventArgs e)
-        {
-            timer1.Enabled = true;
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
+      
+        private void Timer1_Tick(object sender, EventArgs e)
         {
             Close();
         }

@@ -40,7 +40,7 @@ namespace Terminal
 			// timer1
 			// 
 			this.timer1.Interval = 5000;
-			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+			this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
 			// 
 			// roundedPanel1
 			// 
@@ -74,8 +74,7 @@ namespace Terminal
 			this.ClientSize = new System.Drawing.Size(1312, 1069);
 			this.Controls.Add(this.roundedPanel1);
 			this.Name = "ConfirmationForm";
-			this.Text = "Подтвержедение операции";
-			this.Load += new System.EventHandler(this.Confirmation_Load);
+			this.Text = "Пополнение";
 			this.Shown += new System.EventHandler(this.ConfirmationForm_Shown);
 			this.roundedPanel1.ResumeLayout(false);
 			this.ResumeLayout(false);
