@@ -18,6 +18,7 @@ namespace Operator
     public partial class MainForm : Form
     {
         ServerHost server;
+        private bool loadingLog = false;
 
         public MainForm()
         {
@@ -34,6 +35,7 @@ namespace Operator
             {
                 x = 0;
             }
+
             if (y > Screen.PrimaryScreen.Bounds.Height)
             {
                 y = Screen.PrimaryScreen.Bounds.Height - Height;
@@ -42,8 +44,10 @@ namespace Operator
             { 
                 y = 0; 
             }
+
             this.Location = new Point(x, y);
             this.Size = new Size(this.Size.Width, Settings.Instance.WindowHeight);
+            
             if (Settings.Instance.Debug)
             {
                 button1.Visible = true;
@@ -51,72 +55,94 @@ namespace Operator
             }
         }
         
-        public string testCells;
         private bool ModeTechnikalBreak;
-        
 
         private void StatusBoardForm_Load(object sender, EventArgs e)
         {
-            
+            List<Control> list = new List<Control>(20);
+
+            loadingLog = true;
             var listAction = Logger.Instance.ReadLog();
             
-            foreach (var item in listAction.OrderByDescending(x => x.Position))
+            foreach (var item in listAction.OrderBy(x => x.Position))
             {
-               
-                if (item.TypeID == 1)
-                {
-                    var us = new ReplanishControl();
-                    
-                    
-                    us.CurrentInfo.PCName = item.PCName;
-                    us.CurrentInfo.Quantity = item.Quantity;
-                    us.CurrentInfo.TypeID = item.TypeID;
-                    us.CurrentInfo.IncomeDate = item.IncomeDate;
-                    us.CurrentInfo.Position = item.Position;
-                    us.CurrentInfo.State = item.State;
+                BaseInfoControl us = null;
 
-                    List<Control> list = new List<Control>(20);
-                    foreach (Control control in StatusPanel.Controls)
-                    {
-                        list.Add(control);
-                    }
+                switch (item.TypeID)
+				{
+                    case 1:
+                        us = new ReplanishControl();
+                        break;
+                    case 2:
+                        us = new PaymentControl();
+                        break;
+                    default:
+                        continue;
+				}
 
-                    list.Insert(0, us);
-                    StatusPanel.Controls.Clear();
-                    StatusPanel.Controls.AddRange(list.ToArray());
-                } 
-                else
-                {
-                    var us = new PaymentControl();
+                us.CurrentInfo.PCName = item.PCName;
+                us.CurrentInfo.Quantity = item.Quantity;
+                us.CurrentInfo.IncomeDate = item.IncomeDate;
+                us.CurrentInfo.Position = item.Position;
+                us.CurrentInfo.State = item.State;
 
-                    
-                    us.CurrentInfo.PCName = item.PCName;
-                    us.CurrentInfo.Quantity = item.Quantity;
-                    us.CurrentInfo.TypeID = item.TypeID;
-                    us.CurrentInfo.IncomeDate = item.IncomeDate;
-                    us.CurrentInfo.Position = item.Position;
-                    us.CurrentInfo.State = item.State;
-
-                    List<Control> list = new List<Control>(20);
-                    foreach (Control control in StatusPanel.Controls)
-                    {
-                        list.Add(control);
-                    }
-
-                    list.Insert(0, us);
-                    StatusPanel.Controls.Clear();
-                    StatusPanel.Controls.AddRange(list.ToArray());
-                }
-
+                list.Add(us);
             }
-            
+            loadingLog = false;
+
+            StatusPanel.Controls.Clear();
+            StatusPanel.Controls.AddRange(list.ToArray());
 
             server = ServerHost.StartServer();
             server.ReplenishmentRequest += Server_ReplenishmentRequest;
             server.PayoutRequest += Server_PayoutRequest;
         }
 
-        private void Server_PayoutRequest(PayoutRequest obj)
+        private void AddNewControl(BaseInfoControl control)
+		{
+            int maxCount = 20;
+            var width = StatusPanel.Width - StatusPanel.Padding.Left - StatusPanel.Padding.Right;
+            control.Size = new Size(width, control.Height);
+
+            List<Control> list = new List<Control>(maxCount);
+            list.Add(control);
+			control.CurrentInfo.StateChanged += CurrentInfo_StateChanged;
+
+            int i = 0;
+            foreach (BaseInfoControl item in StatusPanel.Controls)
+            {
+                if (i < maxCount - 1)
+                {
+                    list.Add(item);
+                }
+                else
+				{
+                    item.CurrentInfo.StateChanged -= CurrentInfo_StateChanged;
+                }
+                i++;
+            }
+
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action(() =>
+                {
+                    StatusPanel.Controls.Clear();
+                    StatusPanel.Controls.AddRange(list.ToArray());
+                }));
+            }
+            else
+			{
+                StatusPanel.Controls.Clear();
+                StatusPanel.Controls.AddRange(list.ToArray());
+            }
+        }
+
+		private void CurrentInfo_StateChanged()
+		{
+			;
+		}
+
+		private void Server_PayoutRequest(PayoutRequest obj)
         {
             var us = new PaymentControl();
             var width = StatusPanel.Width - StatusPanel.Padding.Left - StatusPanel.Padding.Right;
@@ -143,14 +169,13 @@ namespace Operator
 
         private void Server_ReplenishmentRequest(ReplenishmentData obj)
         {
-            
-           
             var us = new ReplanishControl();
             var width = StatusPanel.Width - StatusPanel.Padding.Left - StatusPanel.Padding.Right;
             us.Size = new Size(width, us.Height);
             us.CurrentInfo.PCName = obj.PCName;
             us.server = server;
             us.CurrentInfo.Quantity = obj.Quantity;
+            
             List<Control> list = new List<Control>(20);
             foreach (Control control in StatusPanel.Controls)
             {
@@ -211,8 +236,7 @@ namespace Operator
         private void StatusBoardForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             MessageBoxButtons messageBoxButtons = MessageBoxButtons.YesNo;
-            DialogResult result;
-            result = MessageBox.Show("Вы точно хотите закрыть программу", "Закрытие программы", messageBoxButtons);
+            var result = MessageBox.Show("Вы точно хотите закрыть программу,", "Закрытие программы", messageBoxButtons);
             if (result == DialogResult.Yes)
             {
                 Settings.Instance.WindowHeight = this.Size.Height;
@@ -220,10 +244,10 @@ namespace Operator
                 Settings.Instance.WindowPositionY = this.Location.Y;
                 Settings.Instance.SaveConfig();
             }
-             else
+            else
             {
-              e.Cancel = true;
-            } 
+                e.Cancel = true;
+            }
         }
 
         private void WriteControlsInLog()
@@ -232,12 +256,10 @@ namespace Operator
             foreach (BaseInfoControl control in StatusPanel.Controls)
             {
                 list.Add(control.CurrentInfo); 
-                              
             }
+
             Logger.Instance.WriteLog(list);
         }
-
-        
 
         private void TechnicalBreakButton_Click(object sender, EventArgs e)
         {

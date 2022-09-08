@@ -19,14 +19,14 @@ namespace Operator
         public PaymentControl()
         {
             InitializeComponent();
-            this.BackColor = Color.White;
-            this.CurrentInfo.State = 1;
-            this.CurrentInfo.TypeID = 2;
-            this.CurrentInfo.Position = 0;
-            this.CurrentInfo.IncomeDate = DateTime.Now;
+            BackColor = Color.White;
+
+            CurrentInfo.State = 1;
+            CurrentInfo.TypeID = 2;
+            CurrentInfo.Position = 0;
+            CurrentInfo.IncomeDate = DateTime.Now;
         }
 
-        
         public ServerHost server { get; set; }
 
         private Stopwatch stopwach = new Stopwatch();
@@ -36,17 +36,29 @@ namespace Operator
         private void PaymentControl_Load(object sender, EventArgs e)
         {
             labelPC.Text = $"ПК {CurrentInfo.PCName}";
-            // labelSum.Text = "";
             pictureBoxPay.Visible = false;
             labelTime.Text = "";
-            stopwach.Start();
-            timerPay.Enabled = true;
-           // NamePC = NamePC;
-            //textBoxPayment.Text = "100";
+
+            switch (CurrentInfo.State)
+			{
+                case 2:
+                    SetCompleted();
+                    break;
+                case 3:
+                    textBoxPayment.Text = "отменен";
+                    SetFailed();
+                    break;
+                default:
+                    stopwach.Start();
+                    timerPay.Enabled = true;
+                    break;
+			}
         }
 
         private void SetCompleted()
         {
+            CurrentInfo.State = 2;
+
             PayoutButton.Visible = false;
             pictureBoxPay.Visible = true;
 
@@ -62,6 +74,8 @@ namespace Operator
 
         private void SetFailed()
         {
+            CurrentInfo.State = 3;
+
             PayoutButton.Visible = false;
             pictureBoxPay.Visible = true;
 
@@ -95,7 +109,7 @@ namespace Operator
             else
             {
                 return;
-            }    
+            }
             server.Pay(CurrentInfo.PCName, textBoxPayment.Cash);
             server.PayoutResult += Server_PayoutResult;
         }
@@ -107,20 +121,20 @@ namespace Operator
             stopwach.Stop();
             this.Invoke(new Action(() =>
             {
-            if (string.IsNullOrEmpty(obj.ErrorMessage))
-            {
-                labelTime.Text = DateTime.Now.ToString("dd.MM HH:mm");
+                if (string.IsNullOrEmpty(obj.ErrorMessage))
+                {
+                    labelTime.Text = DateTime.Now.ToString("dd.MM HH:mm");
                     SetCompleted();
-                
 
-            }
-            else
-            {
-                labelTime.Text = DateTime.Now.ToString("dd.MM HH:mm");
+
+                }
+                else
+                {
+                    labelTime.Text = DateTime.Now.ToString("dd.MM HH:mm");
                     SetFailed();
 
                     ErrorToolTip.SetToolTip(pictureBoxPay, $"ошибка терминала. Компьютер {obj.PCName} {obj.ErrorMessage}");
-                
+
                 }
             }));
         }
@@ -129,8 +143,7 @@ namespace Operator
         {
             var seconds = stopwach.Elapsed.Seconds;
             labelTime.Text = seconds.ToString();
-            //time = time - 1;
-           
+
             if (stopwach.Elapsed.TotalSeconds >= time)
             {
                 stopwach.Stop();
@@ -143,17 +156,17 @@ namespace Operator
             }
         }
 
-		private void PayoutButton_EnabledChanged(object sender, EventArgs e)
-		{
+        private void PayoutButton_EnabledChanged(object sender, EventArgs e)
+        {
             PayoutButton.ForeColor = Color.White;
             if (PayoutButton.Enabled)
-			{
+            {
                 PayoutButton.BackColor = ColorConstants.BlueColor;
             }
             else
-			{
+            {
                 PayoutButton.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
             }
-		}
-	}
+        }
+    }
 }

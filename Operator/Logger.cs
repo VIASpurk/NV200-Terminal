@@ -33,10 +33,12 @@ namespace Operator
                 {
                     using (StreamWriter writer = new StreamWriter(".\\operator.log", false))
                     {
-                        foreach (ActionInfo value in values)
+                        int i = 1;
+                        foreach (ActionInfo value in values.OrderBy(x => x.Position))
                         {
-                            writer.Write($"{nameof(value.Position)}={value.Position};");
-                            writer.Write($"{nameof(value.IncomeDate)}={value.IncomeDate};");
+                            var date = value.IncomeDate > DateTime.MinValue ? value.IncomeDate : DateTime.Now;
+                            writer.Write($"{nameof(value.Position)}={i++};");
+                            writer.Write($"{nameof(value.IncomeDate)}={date};");
                             writer.Write($"{nameof(value.PCName)}={value.PCName};");
                             writer.Write($"{nameof(value.Quantity)}={value.Quantity};");
                             writer.Write($"{nameof(value.State)}={value.State};");

@@ -17,11 +17,12 @@ namespace Operator
         public ReplanishControl()
         {
             InitializeComponent();
-            this.BackColor = Color.White;
-            this.CurrentInfo.State = 1;
-            this.CurrentInfo.TypeID = 1;
-            this.CurrentInfo.Position = 0;
-            this.CurrentInfo.IncomeDate = DateTime.Now;
+            BackColor = Color.White;
+            
+            CurrentInfo.State = 1;
+            CurrentInfo.TypeID = 1;
+            CurrentInfo.Position = 0;
+            CurrentInfo.IncomeDate = DateTime.Now;
         }
 
       
@@ -29,12 +30,13 @@ namespace Operator
 
         private void PayoutButton_Click(object sender, EventArgs e)
         {
-            labelTime.Text = DateTime.Now.ToString("dd.MM HH:mm");
             SetCompleted();
         }
 
         private void SetCompleted()
 		{
+            CurrentInfo.State = 2;
+
             PayoutButton.Visible = false;
             pictureBoxReplanuish.Visible = true;
 
@@ -48,8 +50,14 @@ namespace Operator
         {
             labelPC.Text = $"ПК {CurrentInfo.PCName}";
             labelSum.Text = CurrentInfo.Quantity.ToString();
-            pictureBoxReplanuish.Visible = false;
             labelTime.Text = CurrentInfo.IncomeDate.ToString("dd.MM HH:mm");
+
+            pictureBoxReplanuish.Visible = false;
+
+            if (CurrentInfo.State != 1)
+			{
+                SetCompleted();
+			}
         }
     }
 }
