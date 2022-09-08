@@ -9,6 +9,6 @@ namespace Operator
 {
     public class BaseInfoControl : UserControl
     {
-        public ActionInfo CurrentInfo { get; set; }
+        public ActionInfo CurrentInfo { get; protected set; } =  new ActionInfo();
     }
 }
