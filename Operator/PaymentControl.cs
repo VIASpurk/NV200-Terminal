@@ -14,15 +14,19 @@ using System.Windows.Forms;
 
 namespace Operator
 {
-    public partial class PaymentControl : UserControl
+    public partial class PaymentControl : BaseInfoControl
     {
         public PaymentControl()
         {
             InitializeComponent();
             this.BackColor = Color.White;
+            this.CurrentInfo.State = 1;
+            this.CurrentInfo.TypeID = 2;
+            this.CurrentInfo.Position = 0;
+            this.CurrentInfo.IncomeDate = DateTime.Now;
         }
 
-        public int NamePC { get; set; }
+        
         public ServerHost server { get; set; }
 
         private Stopwatch stopwach = new Stopwatch();
@@ -31,14 +35,14 @@ namespace Operator
 
         private void PaymentControl_Load(object sender, EventArgs e)
         {
-            labelPC.Text = $"ПК {NamePC}";
+            labelPC.Text = $"ПК {CurrentInfo.PCName}";
             // labelSum.Text = "";
             pictureBoxPay.Visible = false;
             labelTime.Text = "";
             stopwach.Start();
             timerPay.Enabled = true;
-            NamePC = NamePC;
-            textBoxPayment.Text = "100";
+           // NamePC = NamePC;
+            //textBoxPayment.Text = "100";
         }
 
         private void SetCompleted()
@@ -79,6 +83,9 @@ namespace Operator
                 return;
             }
 
+            //Добавить проверку. Можем выдать введенную сумму?
+            //server.GetInfo(); -> слот по деньгам. Сможем ли выдать исходя из количества купюр и их номинала?
+            //Нет -> сообщение -> return
 
             if (PayoutButton.Enabled)
             {
@@ -89,7 +96,7 @@ namespace Operator
             {
                 return;
             }    
-            server.Pay(NamePC, textBoxPayment.Cash);
+            server.Pay(CurrentInfo.PCName, textBoxPayment.Cash);
             server.PayoutResult += Server_PayoutResult;
         }
 

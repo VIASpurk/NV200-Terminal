@@ -12,17 +12,19 @@ using System.Windows.Forms;
 
 namespace Operator
 {
-    public partial class ReplanishControl : UserControl
+    public partial class ReplanishControl : BaseInfoControl
     {
         public ReplanishControl()
         {
             InitializeComponent();
             this.BackColor = Color.White;
+            this.CurrentInfo.State = 1;
+            this.CurrentInfo.TypeID = 1;
+            this.CurrentInfo.Position = 0;
+            this.CurrentInfo.IncomeDate = DateTime.Now;
         }
 
-        public int NamePC { get; set; }
-
-        public int Cash { get; set; }
+      
         public ServerHost server { get; set; }
 
         private void PayoutButton_Click(object sender, EventArgs e)
@@ -44,9 +46,10 @@ namespace Operator
 
         private void ReplanishControl_Load(object sender, EventArgs e)
         {
-            labelPC.Text = $"ПК {NamePC}";
-            labelSum.Text = Cash.ToString();
+            labelPC.Text = $"ПК {CurrentInfo.PCName}";
+            labelSum.Text = CurrentInfo.Quantity.ToString();
             pictureBoxReplanuish.Visible = false;
+            labelTime.Text = CurrentInfo.IncomeDate.ToString("dd.MM HH:mm");
         }
     }
 }
