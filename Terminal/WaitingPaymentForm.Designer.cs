@@ -59,7 +59,7 @@
 			// WaitTimer
 			// 
 			this.WaitTimer.Interval = 1000;
-			this.WaitTimer.Tick += new System.EventHandler(this.timer1_Tick);
+			this.WaitTimer.Tick += new System.EventHandler(this.Timer1_Tick);
 			// 
 			// labelChoiseText
 			// 

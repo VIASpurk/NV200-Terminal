@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetworkLibrary.Server;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,8 @@ namespace Operator
     public class BaseInfoControl : UserControl
     {
         public ActionInfo CurrentInfo { get; protected set; } =  new ActionInfo();
+
+        public ServerHost Server { get; set; }
+
     }
 }

@@ -34,7 +34,7 @@ namespace Operator
                     using (StreamWriter writer = new StreamWriter(".\\operator.log", false))
                     {
                         int i = 1;
-                        foreach (ActionInfo value in values.OrderBy(x => x.Position))
+                        foreach (ActionInfo value in values)
                         {
                             var date = value.IncomeDate > DateTime.MinValue ? value.IncomeDate : DateTime.Now;
                             writer.Write($"{nameof(value.Position)}={i++};");
@@ -118,12 +118,9 @@ namespace Operator
                                     actionInfo.TypeID = TypeID;
                                 }
                                 break;
-
                         }
                     }
-
                 }
-
             }
             return list;
         }

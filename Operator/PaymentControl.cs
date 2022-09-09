@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
@@ -27,11 +28,10 @@ namespace Operator
             CurrentInfo.IncomeDate = DateTime.Now;
         }
 
-        public ServerHost server { get; set; }
-
-        private Stopwatch stopwach = new Stopwatch();
-
+        private readonly Stopwatch stopwach = new Stopwatch();
         private readonly int time = 60;
+
+        private CashInfo[] availableCash;
 
         private void PaymentControl_Load(object sender, EventArgs e)
         {
@@ -92,14 +92,25 @@ namespace Operator
 
         private void PayoutButton_Click(object sender, EventArgs e)
         {
-            if (textBoxPayment.Cash == 0)
+            int amount = textBoxPayment.Cash;
+
+            if (amount == 0)
             {
                 return;
             }
 
+            if (Server == null)
+			{
+                SetFailed();
+                return;
+			}
+
             //Добавить проверку. Можем выдать введенную сумму?
-            //server.GetInfo(); -> слот по деньгам. Сможем ли выдать исходя из количества купюр и их номинала?
-            //Нет -> сообщение -> return
+            if (!CanPayoutAmout(amount, out string error))
+			{
+                MessageBox.Show(error);
+                return;
+			}
 
             if (PayoutButton.Enabled)
             {
@@ -110,13 +121,81 @@ namespace Operator
             {
                 return;
             }
-            server.Pay(CurrentInfo.PCName, textBoxPayment.Cash);
-            server.PayoutResult += Server_PayoutResult;
+
+
+            Server.Pay(CurrentInfo.PCName, amount);
+            Server.PayoutResult += Server_PayoutResult;
         }
 
-        private void Server_PayoutResult(PayoutResult obj)
+		private bool CanPayoutAmout(int amount, out string error)
+		{
+            // TODO: Проверка наличия банкнот на указанную сумму
+            var sw = new Stopwatch();
+            sw.Start();
+            var wait = true;
+            availableCash = null;
+
+            try
+            {
+                Server.NeedCashInfoResult += Server_NeedCashInfoResult;
+                Server.NeedCashInfo();
+                while (wait)
+                {
+                    if (availableCash != null)
+                    {
+                        wait = false;
+                    }
+                    else if (sw.Elapsed.TotalSeconds > 10)
+                    {
+                        error = "Отсутствует связь с терминалом";
+                        return false;
+                    }
+                    else
+					{
+                        Thread.Sleep(10);
+					}
+                }
+            }
+            finally
+			{
+                sw.Stop();
+			}
+
+            var cashbox = availableCash.OrderByDescending(x => x.Value);
+            var amountTmp = amount;
+            foreach(var cashItem in cashbox)
+			{
+                while (amountTmp > cashItem.Value)
+				{
+                    if (cashItem.Count >= 0)
+					{
+                        amountTmp -= cashItem.Value;
+                        cashItem.Count--;
+                    }
+                    else
+					{
+                        break;
+					}
+				}
+			}
+            if (amountTmp > 0)
+			{
+                error = "Недостаточно купюр для выдачи";
+                return false;
+			}
+            
+            error = null;
+            return true;
+		}
+
+		private void Server_NeedCashInfoResult(CashInfo[] obj)
+		{
+			availableCash = obj;
+		}
+
+		private void Server_PayoutResult(PayoutResult obj)
         {
-            server.PayoutResult -= Server_PayoutResult;
+            Server.PayoutResult -= Server_PayoutResult;
             timerPay.Enabled = false;
             stopwach.Stop();
             this.Invoke(new Action(() =>
@@ -139,7 +218,7 @@ namespace Operator
             }));
         }
 
-        private void timerPay_Tick(object sender, EventArgs e)
+        private void TimerPay_Tick(object sender, EventArgs e)
         {
             var seconds = stopwach.Elapsed.Seconds;
             labelTime.Text = seconds.ToString();
@@ -149,7 +228,7 @@ namespace Operator
                 stopwach.Stop();
                 timerPay.Enabled = false;
                 PayoutButton.Enabled = false;
-                server.PayoutResult -= Server_PayoutResult;
+                Server.PayoutResult -= Server_PayoutResult;
                 labelTime.Text = DateTime.Now.ToString("dd.MM HH:mm");
                 textBoxPayment.Text = "отменен";
                 SetFailed();

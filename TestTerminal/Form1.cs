@@ -141,5 +141,53 @@ namespace TestTerminal
 			File.WriteAllText($"PolLog_{date}.txt", PollTextBox.Text, Encoding.UTF8);
 			File.WriteAllText($"ActionLog_{date}.txt", ActionTextBox.Text, Encoding.UTF8);
 		}
+
+		public class CashInfo
+		{
+			/// <summary>
+			/// Значение купюры
+			/// </summary>
+			public int Value { get; set; }
+
+			/// <summary>
+			/// Количество купюр
+			/// </summary>
+			public int Count { get; set; }
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			var amount = 750;
+			var availableCash = new CashInfo[]
+			{
+				new CashInfo() { Value = 50, Count = 1 },
+				new CashInfo() { Value = 100, Count = 2 },
+				new CashInfo() { Value = 200, Count = 3 },
+				new CashInfo() { Value = 500, Count = 0 },
+			};
+
+
+			var cashbox = availableCash.OrderByDescending(x => x.Value);
+			var amountTmp = amount;
+			foreach (var cashItem in cashbox)
+			{
+				while (amountTmp >= cashItem.Value)
+				{
+					if (cashItem.Count > 0)
+					{
+						amountTmp -= cashItem.Value;
+						cashItem.Count--;
+					}
+					else
+					{
+						break;
+					}
+				}
+			}
+			if (amountTmp > 0)
+			{
+				MessageBox.Show("Недостаточно купюр для выдачи");
+			}
+		}
 	}
 }

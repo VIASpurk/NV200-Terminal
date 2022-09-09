@@ -59,11 +59,12 @@ namespace Operator
 
         private void StatusBoardForm_Load(object sender, EventArgs e)
         {
-            List<Control> list = new List<Control>(20);
+            var list = new List<BaseInfoControl>(20);
 
             loadingLog = true;
             var listAction = Logger.Instance.ReadLog();
-            
+
+            int i = 0;
             foreach (var item in listAction.OrderBy(x => x.Position))
             {
                 BaseInfoControl us = null;
@@ -72,9 +73,11 @@ namespace Operator
 				{
                     case 1:
                         us = new ReplanishControl();
+                        us.CurrentInfo.State = item.State;
                         break;
                     case 2:
                         us = new PaymentControl();
+                        us.CurrentInfo.State = item.State != 2 ? 3 : item.State;
                         break;
                     default:
                         continue;
@@ -83,19 +86,19 @@ namespace Operator
                 us.CurrentInfo.PCName = item.PCName;
                 us.CurrentInfo.Quantity = item.Quantity;
                 us.CurrentInfo.IncomeDate = item.IncomeDate;
-                us.CurrentInfo.Position = item.Position;
-                us.CurrentInfo.State = item.State;
+                us.CurrentInfo.Position = i++;
 
                 list.Add(us);
             }
-            loadingLog = false;
 
-            StatusPanel.Controls.Clear();
-            StatusPanel.Controls.AddRange(list.ToArray());
+            list.OrderByDescending(x => x.CurrentInfo.Position).ToList().ForEach(x => AddNewControl(x));
+            loadingLog = false;
 
             server = ServerHost.StartServer();
             server.ReplenishmentRequest += Server_ReplenishmentRequest;
             server.PayoutRequest += Server_PayoutRequest;
+
+            list.ForEach(x => x.Server = this.server);
         }
 
         private void AddNewControl(BaseInfoControl control)
@@ -104,8 +107,10 @@ namespace Operator
             var width = StatusPanel.Width - StatusPanel.Padding.Left - StatusPanel.Padding.Right;
             control.Size = new Size(width, control.Height);
 
-            List<Control> list = new List<Control>(maxCount);
-            list.Add(control);
+			List<BaseInfoControl> list = new List<BaseInfoControl>(maxCount)
+			{
+				control
+			};
 			control.CurrentInfo.StateChanged += CurrentInfo_StateChanged;
 
             int i = 0;
@@ -139,104 +144,60 @@ namespace Operator
 
 		private void CurrentInfo_StateChanged()
 		{
-			;
+            if (loadingLog)
+			{
+                return;
+			}
+            WriteControlsInLog();
 		}
 
 		private void Server_PayoutRequest(PayoutRequest obj)
         {
             var us = new PaymentControl();
-            var width = StatusPanel.Width - StatusPanel.Padding.Left - StatusPanel.Padding.Right;
-            us.Size = new Size(width, us.Height);
             us.CurrentInfo.PCName = obj.PCName;
-            us.server = server;
-            
+            us.Server = server;
 
-
-            List<Control> list = new List<Control>(20);
-            foreach (Control control in StatusPanel.Controls)
-            {
-                list.Add(control);
-            }
-
-            list.Insert(0, us);
-            this.Invoke(new Action(() =>
-            {
-                StatusPanel.Controls.Clear();
-                StatusPanel.Controls.AddRange(list.ToArray());
-            }));
+            AddNewControl(us);
             WriteControlsInLog();
         }
 
         private void Server_ReplenishmentRequest(ReplenishmentData obj)
         {
             var us = new ReplanishControl();
-            var width = StatusPanel.Width - StatusPanel.Padding.Left - StatusPanel.Padding.Right;
-            us.Size = new Size(width, us.Height);
             us.CurrentInfo.PCName = obj.PCName;
-            us.server = server;
             us.CurrentInfo.Quantity = obj.Quantity;
-            
-            List<Control> list = new List<Control>(20);
-            foreach (Control control in StatusPanel.Controls)
-            {
-                list.Add(control);
-            }
+            us.Server = server;
 
-            list.Insert(0, us);
-
-            this.Invoke(new Action(() =>
-            {
-                StatusPanel.Controls.Clear();
-                StatusPanel.Controls.AddRange(list.ToArray());
-            }));
+            AddNewControl(us);
             WriteControlsInLog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             var us = new PaymentControl();
-            var width = StatusPanel.Width - StatusPanel.Padding.Left - StatusPanel.Padding.Right;
-            us.Size = new Size(width, us.Height);
             us.CurrentInfo.PCName = 1;
-            us.server = server;
-            //us.CurrentInfo.PCName = us.NamePC;
-            List<Control> list = new List<Control>(20);
-            foreach (Control control in StatusPanel.Controls)
-            {
-                list.Add(control);
-            }
+            us.Server = server;
 
-            list.Insert(0, us);
-            StatusPanel.Controls.Clear();
-            StatusPanel.Controls.AddRange(list.ToArray());
+            AddNewControl(us);
             WriteControlsInLog();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             var us = new ReplanishControl();
-            var width = StatusPanel.Width - StatusPanel.Padding.Left - StatusPanel.Padding.Right;
-            us.Size = new Size(width, us.Height);
             us.CurrentInfo.PCName = 1;
-            us.server = server;
-            //us.Cash = 100;
-           // us.CurrentInfo.PCName = us.NamePC;
-            List<Control> list = new List<Control>(20);
-            foreach (Control control in StatusPanel.Controls)
-            {
-                list.Add(control);            
-            }
+            us.Server = server;
 
-            list.Insert(0, us);
-            StatusPanel.Controls.Clear();
-            StatusPanel.Controls.AddRange(list.ToArray());
+            AddNewControl(us);
             WriteControlsInLog();
         }
 
         private void StatusBoardForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            WriteControlsInLog();
+
             MessageBoxButtons messageBoxButtons = MessageBoxButtons.YesNo;
-            var result = MessageBox.Show("Вы точно хотите закрыть программу,", "Закрытие программы", messageBoxButtons);
+            var result = MessageBox.Show(this, "Вы точно хотите закрыть программу,", "Закрытие программы", messageBoxButtons);
             if (result == DialogResult.Yes)
             {
                 Settings.Instance.WindowHeight = this.Size.Height;

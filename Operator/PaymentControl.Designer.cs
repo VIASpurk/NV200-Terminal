@@ -80,7 +80,7 @@
 			// timerPay
 			// 
 			this.timerPay.Interval = 1000;
-			this.timerPay.Tick += new System.EventHandler(this.timerPay_Tick);
+			this.timerPay.Tick += new System.EventHandler(this.TimerPay_Tick);
 			// 
 			// pictureBoxPay
 			// 

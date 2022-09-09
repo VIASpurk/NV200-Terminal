@@ -50,7 +50,7 @@ namespace Terminal
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
             time--;
             if (time < 10)
@@ -81,12 +81,14 @@ namespace Terminal
         private void ServerProxy_Payment(PayoutData obj)
         {
             serverProxy.Payment -= ServerProxy_Payment;
-            PayoutResult payoutResult = new PayoutResult();
-            payoutResult.PCName = obj.PCName;
-            payoutResult.Quantity = obj.Quantity;
-            
+			PayoutResult payoutResult = new PayoutResult
+			{
+				PCName = obj.PCName,
+				Quantity = obj.Quantity
+			};
 
-            try
+
+			try
             {
                 if (terminal.CanPayout(obj.Quantity, out string error) &&
                     terminal.Payout(obj.Quantity, out error))

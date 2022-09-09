@@ -25,9 +25,6 @@ namespace Operator
             CurrentInfo.IncomeDate = DateTime.Now;
         }
 
-      
-        public ServerHost server { get; set; }
-
         private void PayoutButton_Click(object sender, EventArgs e)
         {
             SetCompleted();
