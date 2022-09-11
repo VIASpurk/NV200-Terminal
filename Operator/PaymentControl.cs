@@ -165,9 +165,9 @@ namespace Operator
             var amountTmp = amount;
             foreach(var cashItem in cashbox)
 			{
-                while (amountTmp > cashItem.Value)
+                while (amountTmp >= cashItem.Value)
 				{
-                    if (cashItem.Count >= 0)
+                    if (cashItem.Count > 0)
 					{
                         amountTmp -= cashItem.Value;
                         cashItem.Count--;
@@ -204,8 +204,6 @@ namespace Operator
                 {
                     labelTime.Text = DateTime.Now.ToString("dd.MM HH:mm");
                     SetCompleted();
-
-
                 }
                 else
                 {
@@ -213,7 +211,6 @@ namespace Operator
                     SetFailed();
 
                     ErrorToolTip.SetToolTip(pictureBoxPay, $"ошибка терминала. Компьютер {obj.PCName} {obj.ErrorMessage}");
-
                 }
             }));
         }

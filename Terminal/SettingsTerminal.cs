@@ -12,7 +12,7 @@ namespace Terminal
         public int CountPC { get; private set; } = 25;
         public string ComPort { get; private set; } = "COM1";
         public string NameServer { get; private set; } = "localhost";
-        public bool EmulateMode { get; private set; } = true;
+        public bool EmulateMode { get; private set; } = false;
         public bool Debug { get; private set; } = false;
 
         private static SettingsTerminal instance;
@@ -128,8 +128,8 @@ namespace Terminal
                     writer.WriteLine($"{nameof(CountPC)}={CountPC}");
                     writer.WriteLine($"{nameof(ComPort)}={ComPort}");
                     writer.WriteLine($"{nameof(NameServer)}={NameServer}");
-                    writer.WriteLine($"{nameof(Debug)}={Debug}");
-                    writer.WriteLine($"{nameof(EmulateMode)}={EmulateMode}");
+                    // writer.WriteLine($"{nameof(Debug)}={Debug}");
+                    // writer.WriteLine($"{nameof(EmulateMode)}={EmulateMode}");
                 }
             }
             catch

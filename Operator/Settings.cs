@@ -134,7 +134,7 @@ namespace Operator
                     writer.WriteLine($"{nameof(WindowPositionY)}={WindowPositionY}");
                     writer.WriteLine($"{nameof(NameServer)}={NameServer}");
                     writer.WriteLine($"{nameof(WindowHeight)}={WindowHeight}");
-                    writer.WriteLine($"{nameof(Debug)}={Debug}");
+                    // writer.WriteLine($"{nameof(Debug)}={Debug}");
                 }
             }
             catch

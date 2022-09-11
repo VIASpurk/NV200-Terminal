@@ -76,7 +76,17 @@ namespace Terminal
         {
             timerIntroduction.Enabled = true;
 			terminal.ReceivedCash += Terminal_ReceivedCash;
+			terminal.ReadingNote += Terminal_ReadingNote;
             terminal.EnableValidator(out string error);
+        }
+
+        private void Terminal_ReadingNote()
+        {
+            timerIntroduction.Enabled = false;
+            if (kryptonButtonIntoductionCancel.Enabled)
+            {
+                Invoke(new Action(() => kryptonButtonIntoductionCancel.Enabled = false));
+            }
         }
 
 		private void Terminal_ReceivedCash(int obj)

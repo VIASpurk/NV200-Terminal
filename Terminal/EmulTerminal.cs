@@ -20,6 +20,10 @@ namespace Terminal
 
 		public event Action<int> ReceivedCash;
 		public event Action<int> PayoutCash;
+		/// <summary>
+		/// Терминал читает банкноту
+		/// </summary>
+		public event Action ReadingNote;
 
 		public static ITerminal RunEmulator()
 		{

@@ -11,6 +11,7 @@ namespace TerminalLibrary
 
 		event Action<int> ReceivedCash;
 		event Action<int> PayoutCash;
+		event Action ReadingNote;
 
 		bool Payout(int quantity, out string log);
 		bool CanPayout(int quantity, out string log);

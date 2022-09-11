@@ -95,7 +95,7 @@ namespace Terminal
                     terminal = EmulTerminal.ConnectToDevice(SettingsTerminal.Instance.ComPort);
                 }
             }
-            catch (Exception exc)
+            catch
             {
                 using (var form = new TerminalErrorForm())
 				{

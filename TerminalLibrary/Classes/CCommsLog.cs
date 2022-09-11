@@ -44,8 +44,11 @@ namespace TerminalLibrary.Classes
 				// name this log as current time with name of validator at start
 				m_FileName = fileName + "_" + DateTime.Now.Hour.ToString() + "h" + DateTime.Now.Minute.ToString() + "m" +
 					DateTime.Now.Second.ToString() + "s.txt";
+
+#if DEBUG
 				// create/open the file
 				m_SW = File.AppendText(logDir + "\\" + m_FileName);
+#endif
 			}
 			catch (Exception ex)
 			{
@@ -134,7 +137,9 @@ namespace TerminalLibrary.Classes
 
 		private void AppendToLog(string stringToAppend)
 		{
+#if DEBUG
 			m_SW.Write(stringToAppend);
+#endif
 		}
 	}
 }

@@ -56,6 +56,10 @@ namespace TerminalLibrary.Classes
 		/// Распознана и сохранена купюра
 		/// </summary>
 		public Action<int> StoredNote;
+		/// <summary>
+		/// Сканер читает купюру
+		/// </summary>
+		public Action ReadingNote;
 
 		// constructor
 		public CPayout()
@@ -857,6 +861,7 @@ namespace TerminalLibrary.Classes
 						}
 						else
 							sb.Append("Reading note\r\n");
+						ReadingNote?.Invoke();
 						i++;
 						break;
 					// A credit event has been detected, this is when the validator has accepted a note as legal currency.

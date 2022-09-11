@@ -42,6 +42,10 @@ namespace TerminalLibrary
 		/// Выдана сумма пользователю
 		/// </summary>
 		public event Action<int> PayoutCash;
+		/// <summary>
+		/// Терминал читает банкноту
+		/// </summary>
+		public event Action ReadingNote;
 
 		public static Terminal ConnectToDevice(string comport)
 		{
@@ -193,6 +197,7 @@ namespace TerminalLibrary
 
 				payoutModule.DispensedNote += DispensedNote;
 				payoutModule.StoredNote += StoredNote;
+				payoutModule.ReadingNote += ReadingNewNote;
 			}
 			else
 			{
@@ -211,6 +216,10 @@ namespace TerminalLibrary
 		private void StoredNote(int obj)
 		{
 			Task.Run(new Action(() => ReceivedCash?.Invoke(obj / multiplier)));
+		}
+		private void ReadingNewNote()
+		{
+			Task.Run(new Action(() => ReadingNote?.Invoke()));
 		}
 
 		private void SetMaxPayoutProtocolVersion()
