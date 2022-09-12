@@ -42,6 +42,8 @@ namespace Operator
             switch (CurrentInfo.State)
 			{
                 case 2:
+                    textBoxPayment.Text = CurrentInfo.Quantity.ToString();
+                    labelTime.Text = CurrentInfo.IncomeDate.ToString("dd.MM HH:mm");
                     SetCompleted();
                     break;
                 case 3:
@@ -92,9 +94,9 @@ namespace Operator
 
         private void PayoutButton_Click(object sender, EventArgs e)
         {
-            int amount = textBoxPayment.Cash;
+            CurrentInfo.Quantity = textBoxPayment.Cash;
 
-            if (amount == 0)
+            if (CurrentInfo.Quantity == 0)
             {
                 return;
             }
@@ -106,7 +108,7 @@ namespace Operator
 			}
 
             //Добавить проверку. Можем выдать введенную сумму?
-            if (!CanPayoutAmout(amount, out string error))
+            if (!CanPayoutAmout(CurrentInfo.Quantity, out string error))
 			{
                 MessageBox.Show(error);
                 return;
@@ -116,6 +118,8 @@ namespace Operator
             {
                 PayoutButton.Enabled = false;
                 textBoxPayment.ReadOnly = true;
+                timerPay.Enabled = false;
+                labelTime.Text = "";
             }
             else
             {
@@ -123,7 +127,7 @@ namespace Operator
             }
 
 
-            Server.Pay(CurrentInfo.PCName, amount);
+            Server.Pay(CurrentInfo.PCName, CurrentInfo.Quantity);
             Server.PayoutResult += Server_PayoutResult;
         }
 

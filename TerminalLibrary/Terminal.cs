@@ -46,6 +46,14 @@ namespace TerminalLibrary
 		/// Терминал читает банкноту
 		/// </summary>
 		public event Action ReadingNote;
+		/// <summary>
+		/// Терминал перекладывает банкноту
+		/// </summary>
+		public event Action StackingNote;
+		/// <summary>
+		/// Терминал выдает проблемную банкноту
+		/// </summary>
+		public event Action RejectingNote;
 
 		public static Terminal ConnectToDevice(string comport)
 		{
@@ -198,6 +206,8 @@ namespace TerminalLibrary
 				payoutModule.DispensedNote += DispensedNote;
 				payoutModule.StoredNote += StoredNote;
 				payoutModule.ReadingNote += ReadingNewNote;
+				payoutModule.StackingNote += StackingNewNote;
+				payoutModule.RejectingNote += RejectingNewNote;
 			}
 			else
 			{
@@ -220,6 +230,14 @@ namespace TerminalLibrary
 		private void ReadingNewNote()
 		{
 			Task.Run(new Action(() => ReadingNote?.Invoke()));
+		}
+		private void StackingNewNote()
+		{
+			Task.Run(new Action(() => StackingNote?.Invoke()));
+		}
+		private void RejectingNewNote()
+		{
+			Task.Run(new Action(() => RejectingNote?.Invoke()));
 		}
 
 		private void SetMaxPayoutProtocolVersion()

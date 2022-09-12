@@ -24,6 +24,8 @@ namespace Terminal
 		/// Терминал читает банкноту
 		/// </summary>
 		public event Action ReadingNote;
+		public event Action StackingNote;
+		public event Action RejectingNote;
 
 		public static ITerminal RunEmulator()
 		{
@@ -51,7 +53,11 @@ namespace Terminal
 
 			if (canPayout)
 			{
-				Task.Run( async () => { await Task.Delay(5000); PayoutCash?.Invoke(quantity); });
+				Task.Run( async () => 
+				{
+					await Task.Delay(5000);
+					PayoutCash?.Invoke(quantity); 
+				});
 			}
 			return canPayout;
 		}
@@ -88,7 +94,19 @@ namespace Terminal
 		public void EnableValidator(out string log)
 		{
 			log = null;
-			Task.Run( async () => { await Task.Delay(1000); ReceivedCash?.Invoke(500); });
+			Task.Run( async () => 
+			{
+				await Task.Delay(1000);
+				ReadingNote?.Invoke();
+				await Task.Delay(2000);
+				StackingNote?.Invoke(); 
+				await Task.Delay(4000); 
+				ReceivedCash?.Invoke(500);
+				await Task.Delay(1000);
+				StackingNote?.Invoke();
+				await Task.Delay(3000);
+				ReceivedCash?.Invoke(200);
+			});
 		}
 
 		/// <summary>

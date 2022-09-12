@@ -60,6 +60,14 @@ namespace TerminalLibrary.Classes
 		/// Сканер читает купюру
 		/// </summary>
 		public Action ReadingNote;
+		/// <summary>
+		/// Сканер перекладывает купюру
+		/// </summary>
+		public Action StackingNote;
+		/// <summary>
+		/// Сканер выдает проблемную купюру
+		/// </summary>
+		public Action RejectingNote;
 
 		// constructor
 		public CPayout()
@@ -875,6 +883,7 @@ namespace TerminalLibrary.Classes
 					// A note is being rejected from the validator. This will carry on polling while the note is in transit.
 					case CCommands.SSP_POLL_NOTE_REJECTING:
 						sb.Append("Rejecting note\r\n");
+						RejectingNote?.Invoke();
 						break;
 					// A note has been rejected from the validator, the note will be resting in the bezel. This response only
 					// appears once.
@@ -885,6 +894,7 @@ namespace TerminalLibrary.Classes
 					// A note is in transit to the cashbox.
 					case CCommands.SSP_POLL_NOTE_STACKING:
 						sb.Append("Stacking note\r\n");
+						StackingNote?.Invoke();
 						break;
 					// The payout device is 'floating' a specified amount of notes. It will transfer some to the cashbox and
 					// leave the specified amount in the payout device.

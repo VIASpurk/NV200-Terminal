@@ -77,19 +77,52 @@ namespace Terminal
             timerIntroduction.Enabled = true;
 			terminal.ReceivedCash += Terminal_ReceivedCash;
 			terminal.ReadingNote += Terminal_ReadingNote;
+			terminal.StackingNote += Terminal_StackingNote;
+			terminal.RejectingNote += Terminal_RejectingNote;
             terminal.EnableValidator(out string error);
+        }
+
+		private void Terminal_StackingNote()
+		{
+            timerIntroduction.Enabled = false;
+
+            if (kryptonButtonIntoductionCancel.Enabled)
+            {
+                Invoke(new Action(() =>
+                {
+                    kryptonButtonIntoductionCancel.Enabled = false;
+                    kryptonButtonIntoductionNext.Enabled = false;
+                }));
+            }
+        }
+
+        private void Terminal_RejectingNote()
+		{
+            if (kryptonButtonIntoductionCancel.Enabled)
+            {
+                Invoke(new Action(() =>
+                {
+                    kryptonButtonIntoductionCancel.Enabled = true;
+                    kryptonButtonIntoductionNext.Enabled = true;
+                }));
+            }
         }
 
         private void Terminal_ReadingNote()
         {
             timerIntroduction.Enabled = false;
+
             if (kryptonButtonIntoductionCancel.Enabled)
             {
-                Invoke(new Action(() => kryptonButtonIntoductionCancel.Enabled = false));
+                Invoke(new Action(() =>
+                {
+                    kryptonButtonIntoductionCancel.Enabled = false;
+                    kryptonButtonIntoductionNext.Enabled = false;
+                }));
             }
         }
 
-		private void Terminal_ReceivedCash(int obj)
+        private void Terminal_ReceivedCash(int obj)
 		{
             timerIntroduction.Enabled = false;
             Cash += obj;
@@ -98,6 +131,9 @@ namespace Terminal
                 labelCash.Text = Cash.ToString();
                 kryptonButtonIntoductionCancel.Visible = false;
                 kryptonButtonIntoductionNext.Visible = true;
+
+                kryptonButtonIntoductionCancel.Enabled = true;
+                kryptonButtonIntoductionNext.Enabled = true;
             }));
         }
 
@@ -110,7 +146,26 @@ namespace Terminal
 		{
             terminal.DisableValidator(out string error);
             terminal.ReceivedCash -= Terminal_ReceivedCash;
+            terminal.ReadingNote -= Terminal_ReadingNote;
+            terminal.StackingNote -= Terminal_StackingNote;
+            terminal.RejectingNote -= Terminal_RejectingNote;
+        }
+
+		private void kryptonButtonIntoductionCancel_Click(object sender, EventArgs e)
+		{
+            if (kryptonButtonIntoductionCancel.Enabled)
+			{
+                DialogResult = DialogResult.Cancel;
+			}
 		}
-	}
+
+		private void kryptonButtonIntoductionNext_Click(object sender, EventArgs e)
+		{
+            if (kryptonButtonIntoductionNext.Enabled)
+            {
+                DialogResult = DialogResult.OK;
+            }
+        }
+    }
 }
 

@@ -155,6 +155,7 @@ namespace Operator
         {
             var us = new PaymentControl();
             us.CurrentInfo.PCName = obj.PCName;
+            us.CurrentInfo.IncomeDate = DateTime.Now;
             us.Server = server;
 
             AddNewControl(us);
@@ -166,6 +167,7 @@ namespace Operator
             var us = new ReplanishControl();
             us.CurrentInfo.PCName = obj.PCName;
             us.CurrentInfo.Quantity = obj.Quantity;
+            us.CurrentInfo.IncomeDate = DateTime.Now;
             us.Server = server;
 
             AddNewControl(us);
@@ -176,6 +178,7 @@ namespace Operator
         {
             var us = new PaymentControl();
             us.CurrentInfo.PCName = 1;
+            us.CurrentInfo.IncomeDate = DateTime.Now;
             us.Server = server;
 
             AddNewControl(us);
@@ -187,6 +190,7 @@ namespace Operator
             var us = new ReplanishControl();
             us.CurrentInfo.PCName = 1;
             us.Server = server;
+            us.CurrentInfo.IncomeDate = DateTime.Now;
 
             AddNewControl(us);
             WriteControlsInLog();

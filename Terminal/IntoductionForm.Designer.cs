@@ -73,7 +73,6 @@
 			// kryptonButtonIntoductionNext
 			// 
 			this.kryptonButtonIntoductionNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.kryptonButtonIntoductionNext.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.kryptonButtonIntoductionNext.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Italic);
 			this.kryptonButtonIntoductionNext.Location = new System.Drawing.Point(970, 938);
 			this.kryptonButtonIntoductionNext.Name = "kryptonButtonIntoductionNext";
@@ -85,13 +84,14 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
 			this.kryptonButtonIntoductionNext.StateCommon.Border.Rounding = 40;
 			this.kryptonButtonIntoductionNext.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.kryptonButtonIntoductionNext.StateDisabled.Content.ShortText.Color1 = System.Drawing.Color.DarkGray;
 			this.kryptonButtonIntoductionNext.TabIndex = 33;
 			this.kryptonButtonIntoductionNext.Values.Text = "Далее";
+			this.kryptonButtonIntoductionNext.Click += new System.EventHandler(this.kryptonButtonIntoductionNext_Click);
 			// 
 			// kryptonButtonIntoductionCancel
 			// 
 			this.kryptonButtonIntoductionCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.kryptonButtonIntoductionCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.kryptonButtonIntoductionCancel.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Italic);
 			this.kryptonButtonIntoductionCancel.Location = new System.Drawing.Point(66, 938);
 			this.kryptonButtonIntoductionCancel.Name = "kryptonButtonIntoductionCancel";
@@ -103,8 +103,10 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
 			this.kryptonButtonIntoductionCancel.StateCommon.Border.Rounding = 40;
 			this.kryptonButtonIntoductionCancel.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.kryptonButtonIntoductionCancel.StateDisabled.Content.ShortText.Color1 = System.Drawing.Color.DarkGray;
 			this.kryptonButtonIntoductionCancel.TabIndex = 34;
 			this.kryptonButtonIntoductionCancel.Values.Text = "Отмена";
+			this.kryptonButtonIntoductionCancel.Click += new System.EventHandler(this.kryptonButtonIntoductionCancel_Click);
 			// 
 			// labelIntroductionText
 			// 
