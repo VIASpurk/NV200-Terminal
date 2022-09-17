@@ -90,7 +90,9 @@ namespace Terminal
 
 			try
             {
-                if (terminal.CanPayout(obj.Quantity, out string error) &&
+                terminal.EnableValidator(out string error);
+
+                if (terminal.CanPayout(obj.Quantity, out error) &&
                     terminal.Payout(obj.Quantity, out error))
                 {
                     WaitTimer.Enabled = false;
@@ -117,6 +119,10 @@ namespace Terminal
             {
                 payoutResult.ErrorMessage = "Ошибка: " + exc.Message;
             }
+            finally
+			{
+                terminal.DisableValidator(out string error);
+            }
             serverProxy.PayoutResult(payoutResult);
 
             this.Invoke(new Action(() =>
@@ -134,6 +140,7 @@ namespace Terminal
 		private void WaitingPaymentForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             serverProxy.Payment -= ServerProxy_Payment;
+            terminal.DisableValidator(out string error);
         }
 
 		private void ErrorTimer_Tick(object sender, EventArgs e)
